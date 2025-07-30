@@ -1,0 +1,85 @@
+/* 字体导入必须在最前面 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自定义样式 */
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: #334155;
+  background-color: #f8fafc;
+}
+
+/* 简历容器样式 */
+.resume-container {
+  max-width: 850px;
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 技能标签样式 */
+.skill-tag {
+  @apply inline-block px-2 py-0.5 text-xs font-medium text-white rounded-full mr-2 mb-2;
+  background-color: #374151;
+}
+
+/* 状态标签样式 */
+.status-tag {
+  @apply inline-block px-3 py-1 text-sm font-medium text-white rounded-full;
+  background-color: #059669;
+}
+
+/* 链接样式 */
+.resume-link {
+  @apply text-blue-600 hover:text-blue-800 transition-colors duration-200;
+}
+
+/* 标题样式 */
+.section-title {
+  @apply text-xl font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200;
+}
+
+/* 项目和经历卡片 */
+.experience-card {
+  @apply mb-6 last:mb-0;
+}
+
+.experience-header {
+  @apply flex justify-between items-start mb-2;
+}
+
+.company-name {
+  @apply text-base font-semibold text-gray-900;
+}
+
+.position-title {
+  @apply text-sm text-gray-600 mt-1;
+}
+
+.date-range {
+  @apply text-sm text-gray-500 whitespace-nowrap;
+}
+
+.experience-content {
+  @apply text-sm text-gray-700 leading-relaxed;
+}
+
+/* 教育经历样式 */
+.education-item {
+  @apply mb-4 last:mb-0;
+}
+
+.school-name {
+  @apply text-base font-semibold text-gray-900;
+}
+
+.degree-info {
+  @apply text-sm text-gray-600 mt-1;
+}
