@@ -26,14 +26,14 @@ body {
 
 /* 技能标签样式 */
 .skill-tag {
-  @apply inline-block px-2 py-0.5 text-xs font-medium text-white rounded-full mr-2 mb-2;
+  @apply inline-block px-3 py-1 text-xs font-medium text-white rounded-full ml-2;
   background-color: #374151;
 }
 
 /* 状态标签样式 */
 .status-tag {
-  @apply inline-block px-3 py-1 text-sm font-medium text-white rounded-full;
-  background-color: #059669;
+  @apply inline-block px-3 py-1 text-xs font-medium text-white rounded-full;
+  background-color: #374151;
 }
 
 /* 链接样式 */
@@ -43,7 +43,7 @@ body {
 
 /* 标题样式 */
 .section-title {
-  @apply text-xl font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200;
+  @apply text-2xl font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200;
 }
 
 /* 项目和经历卡片 */
@@ -64,7 +64,7 @@ body {
 }
 
 .date-range {
-  @apply text-sm text-gray-500 whitespace-nowrap;
+  @apply text-base text-gray-500 whitespace-nowrap;
 }
 
 .experience-content {
@@ -81,5 +81,5 @@ body {
 }
 
 .degree-info {
-  @apply text-sm text-gray-600 mt-1;
+  @apply text-base text-gray-600 mt-1;
 }

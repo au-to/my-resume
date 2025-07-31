@@ -3,7 +3,7 @@
     <!-- 简历头部 -->
     <div class="px-12 pt-12 pb-8">
       <!-- 语言切换和姓名行 -->
-      <div class="flex justify-between items-start mb-8">
+      <div class="flex justify-between items-start mb-4">
         <div class="text-sm text-gray-500">
           <span class="text-green-600 cursor-pointer">中文</span>
           <span class="mx-1">/</span>
@@ -20,13 +20,13 @@
       <!-- 联系信息 -->
       <div class="flex justify-end mb-4">
         <div class="text-right text-sm text-gray-600 space-y-2">
-          <div class="text-base">{{ resumeData.personalInfo.location }}</div>
+          <div class="text-sm">{{ resumeData.personalInfo.location }}</div>
           <div class="flex items-center justify-end space-x-6">
-            <span class="flex items-center">
+            <span class="flex items-center text-sm">
               <span class="mr-1">📱</span>
               {{ resumeData.personalInfo.phone }}
             </span>
-            <a :href="`mailto:${resumeData.personalInfo.email}`" class="resume-link flex items-center">
+            <a :href="`mailto:${resumeData.personalInfo.email}`" class="resume-link flex items-center text-sm">
               <span class="mr-1">📧</span>
               {{ resumeData.personalInfo.email }}
             </a>
@@ -62,9 +62,9 @@
             <div class="experience-header">
               <div>
                 <h3 class="text-lg font-semibold text-gray-900">{{ experience.company }}</h3>
-                <p class="text-sm text-gray-600 mt-1">{{ experience.position }}</p>
+                <p class="text-base text-gray-600 mt-1">{{ experience.position }}</p>
               </div>
-              <span class="text-sm text-gray-500 whitespace-nowrap">{{ experience.dateRange }}</span>
+              <span class="text-base text-gray-500 whitespace-nowrap">{{ experience.dateRange }}</span>
             </div>
             
             <!-- 技能标签 -->
@@ -72,7 +72,7 @@
               <span 
                 v-for="tech in experience.technologies" 
                 :key="tech"
-                class="inline-block px-2 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded mr-2 mb-1"
+                class="inline-block px-2 py-1 text-sm font-medium text-gray-700 bg-gray-100 rounded mr-2 mb-1"
               >
                 {{ tech }}
               </span>
@@ -80,10 +80,10 @@
 
             <!-- 工作内容 -->
             <div class="experience-content">
-              <h4 class="font-semibold mb-3 text-gray-900">{{ experience.title }}</h4>
+              <h4 class="font-semibold mb-3 text-gray-700 text-base">{{ experience.title }}</h4>
               <ul class="space-y-3 text-sm text-gray-700">
                 <li v-for="(achievement, idx) in experience.achievements" :key="idx" class="flex">
-                  <span class="text-green-600 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
+                  <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
                   <span class="flex-1 leading-6">{{ achievement }}</span>
                 </li>
               </ul>
@@ -101,10 +101,10 @@
             :key="index"
             class="experience-card"
           >
-            <h3 class="text-lg font-semibold text-green-600 mb-2">{{ project.name }}</h3>
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">{{ project.name }}</h3>
             <ul class="space-y-2 text-sm text-gray-700 mb-3">
               <li v-for="(description, idx) in project.descriptions" :key="idx" class="flex">
-                <span class="text-green-600 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
+                <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
                 <span class="flex-1 leading-6">{{ description }}</span>
               </li>
             </ul>
@@ -114,7 +114,7 @@
               <span 
                 v-for="tech in project.technologies" 
                 :key="tech"
-                class="inline-block px-2 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded mr-2 mb-1"
+                class="inline-block px-2 py-1 text-sm font-medium text-gray-700 bg-gray-100 rounded mr-2 mb-1"
               >
                 {{ tech }}
               </span>
@@ -142,7 +142,7 @@
         <h2 class="section-title">自我评价</h2>
         <ul class="space-y-2 text-sm text-gray-700">
           <li v-for="(evaluation, index) in resumeData.selfEvaluation" :key="index" class="flex">
-            <span class="text-green-600 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
+            <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
             <span class="flex-1 leading-6">{{ evaluation }}</span>
           </li>
         </ul>
@@ -225,7 +225,7 @@ const resumeData = ref({
   ],
   education: {
     school: '燕山大学（国家重点）',
-    degree: '本科 · 通信工程',
+    degree: '本科 - 通信工程',
     dateRange: '2019-09 ~ 2023-06'
   },
   selfEvaluation: [
