@@ -1,16 +1,19 @@
 <template>
   <div class="resume-container min-h-screen bg-white">
     <!-- 简历头部 -->
-    <div class="px-12 pt-12 pb-8">
+    <div class="px-12 pt-16 pb-10 relative">
+      <!-- 背景装饰 -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-50 to-transparent rounded-full opacity-60 -z-0"></div>
+      
       <!-- 语言切换和姓名行 -->
-      <div class="flex justify-between items-start mb-4">
-        <div class="text-sm text-gray-500">
-          <span class="text-green-600 cursor-pointer">中文</span>
-          <span class="mx-1">/</span>
-          <span class="cursor-pointer hover:text-gray-700">EN</span>
+      <div class="flex justify-between items-start mb-6 relative z-10">
+        <div class="text-sm font-medium">
+          <span class="text-blue-600 cursor-pointer px-2 py-1 bg-blue-50 rounded-md transition-all hover:bg-blue-100">中文</span>
+          <span class="mx-2 text-gray-400">/</span>
+          <span class="cursor-pointer hover:text-gray-700 px-2 py-1 rounded-md transition-all hover:bg-gray-50">EN</span>
         </div>
         <div class="text-right">
-          <h1 class="text-5xl font-light text-gray-900 mb-3">{{ resumeData.personalInfo.name }}</h1>
+          <h1 class="text-5xl font-light text-gray-900 mb-4 tracking-tight">{{ resumeData.personalInfo.name }}</h1>
           <div class="flex justify-end">
             <span class="status-tag">{{ resumeData.personalInfo.status }}</span>
           </div>
@@ -18,16 +21,16 @@
       </div>
 
       <!-- 联系信息 -->
-      <div class="flex justify-end mb-4">
-        <div class="text-right text-sm text-gray-600 space-y-2">
-          <div class="text-sm">{{ resumeData.personalInfo.location }}</div>
-          <div class="flex items-center justify-end space-x-6">
-            <span class="flex items-center text-sm">
-              <span class="mr-1">📱</span>
+      <div class="flex justify-end mb-6 relative z-10">
+        <div class="text-right text-sm space-y-3 bg-white/70 backdrop-blur-sm p-4 rounded-lg border border-gray-100">
+          <div class="text-base font-medium text-gray-700">{{ resumeData.personalInfo.location }}</div>
+          <div class="flex items-center justify-end space-x-8">
+            <span class="flex items-center text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
+              <span class="mr-2 text-base">📱</span>
               {{ resumeData.personalInfo.phone }}
             </span>
-            <a :href="`mailto:${resumeData.personalInfo.email}`" class="resume-link flex items-center text-sm">
-              <span class="mr-1">📧</span>
+            <a :href="`mailto:${resumeData.personalInfo.email}`" class="resume-link flex items-center text-sm font-medium">
+              <span class="mr-2 text-base">📧</span>
               {{ resumeData.personalInfo.email }}
             </a>
           </div>
@@ -35,8 +38,8 @@
       </div>
 
       <!-- 技能标签 -->
-      <div class="flex justify-end mb-8">
-        <div class="flex flex-wrap justify-end max-w-md">
+      <div class="flex justify-end mb-10 relative z-10">
+        <div class="flex flex-wrap justify-end max-w-lg gap-2">
           <span 
             v-for="skill in resumeData.skills" 
             :key="skill"
@@ -68,11 +71,11 @@
             </div>
             
             <!-- 技能标签 -->
-            <div class="flex flex-wrap mt-2 mb-4">
+            <div class="flex flex-wrap mt-3 mb-5 gap-2">
               <span 
                 v-for="tech in experience.technologies" 
                 :key="tech"
-                class="inline-block px-2 py-1 text-sm font-medium text-gray-700 bg-gray-100 rounded mr-2 mb-1"
+                class="inline-block px-3 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full border border-blue-200 hover:bg-blue-100 transition-all duration-200"
               >
                 {{ tech }}
               </span>
@@ -80,11 +83,14 @@
 
             <!-- 工作内容 -->
             <div class="experience-content">
-              <h4 class="font-semibold mb-3 text-gray-700 text-base">{{ experience.title }}</h4>
+              <h4 class="font-semibold mb-4 text-gray-800 text-base flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-3 flex-shrink-0"></span>
+                {{ experience.title }}
+              </h4>
               <ul class="space-y-3 text-sm text-gray-700">
-                <li v-for="(achievement, idx) in experience.achievements" :key="idx" class="flex">
-                  <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
-                  <span class="flex-1 leading-6">{{ achievement }}</span>
+                <li v-for="(achievement, idx) in experience.achievements" :key="idx" class="flex items-start group">
+                  <span class="text-blue-500 mr-3 flex-shrink-0 w-4 h-4 flex items-center justify-center mt-1 transition-transform group-hover:scale-110">✓</span>
+                  <span class="flex-1 leading-relaxed">{{ achievement }}</span>
                 </li>
               </ul>
             </div>
@@ -101,20 +107,23 @@
             :key="index"
             class="experience-card"
           >
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">{{ project.name }}</h3>
-            <ul class="space-y-2 text-sm text-gray-700 mb-3">
-              <li v-for="(description, idx) in project.descriptions" :key="idx" class="flex">
-                <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
-                <span class="flex-1 leading-6">{{ description }}</span>
+            <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+              <span class="w-2 h-2 bg-green-500 rounded-full mr-3 flex-shrink-0"></span>
+              {{ project.name }}
+            </h3>
+            <ul class="space-y-3 text-sm text-gray-700 mb-4">
+              <li v-for="(description, idx) in project.descriptions" :key="idx" class="flex items-start group">
+                <span class="text-green-500 mr-3 flex-shrink-0 w-4 h-4 flex items-center justify-center mt-1 transition-transform group-hover:scale-110">✓</span>
+                <span class="flex-1 leading-relaxed">{{ description }}</span>
               </li>
             </ul>
             
             <!-- 项目技术标签 -->
-            <div class="flex flex-wrap">
+            <div class="flex flex-wrap gap-2">
               <span 
                 v-for="tech in project.technologies" 
                 :key="tech"
-                class="inline-block px-2 py-1 text-sm font-medium text-gray-700 bg-gray-100 rounded mr-2 mb-1"
+                class="inline-block px-3 py-1.5 text-xs font-semibold text-green-700 bg-green-50 rounded-full border border-green-200 hover:bg-green-100 transition-all duration-200"
               >
                 {{ tech }}
               </span>
@@ -126,13 +135,16 @@
       <!-- 教育经历 -->
       <section>
         <h2 class="section-title">教育经历</h2>
-        <div class="education-item">
+        <div class="experience-card">
           <div class="flex justify-between items-start">
             <div>
-              <h3 class="school-name">{{ resumeData.education.school }}</h3>
-              <p class="degree-info">{{ resumeData.education.degree }}</p>
+              <h3 class="text-lg font-semibold text-gray-800 flex items-center">
+                <span class="w-2 h-2 bg-yellow-500 rounded-full mr-3 flex-shrink-0"></span>
+                {{ resumeData.education.school }}
+              </h3>
+              <p class="text-base text-gray-600 mt-2 ml-5">{{ resumeData.education.degree }}</p>
             </div>
-            <span class="date-range">{{ resumeData.education.dateRange }}</span>
+            <span class="text-base text-gray-500 whitespace-nowrap font-medium">{{ resumeData.education.dateRange }}</span>
           </div>
         </div>
       </section>
@@ -140,24 +152,26 @@
       <!-- 自我评价 -->
       <section>
         <h2 class="section-title">自我评价</h2>
-        <ul class="space-y-2 text-sm text-gray-700">
-          <li v-for="(evaluation, index) in resumeData.selfEvaluation" :key="index" class="flex">
-            <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
-            <span class="flex-1 leading-6">{{ evaluation }}</span>
-          </li>
-        </ul>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div v-for="(evaluation, index) in resumeData.selfEvaluation" :key="index" class="flex items-start group p-3 rounded-lg bg-gradient-to-r from-gray-50 to-blue-50 hover:from-blue-50 hover:to-purple-50 transition-all duration-300">
+            <span class="text-blue-500 mr-3 flex-shrink-0 w-4 h-4 flex items-center justify-center mt-1 transition-transform group-hover:scale-110">★</span>
+            <span class="flex-1 text-sm text-gray-700 leading-relaxed">{{ evaluation }}</span>
+          </div>
+        </div>
       </section>
 
       <!-- 其他链接 -->
       <section>
         <h2 class="section-title">其他链接</h2>
-        <ul class="space-y-2 text-sm">
-          <li v-for="(link, index) in resumeData.links" :key="index" class="flex items-center">
-            <span class="mr-2">{{ link.icon }}</span>
-            <span class="mr-2">{{ link.label }}：</span>
-            <a :href="link.url" class="resume-link" target="_blank">{{ link.url }}</a>
-          </li>
-        </ul>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div v-for="(link, index) in resumeData.links" :key="index" class="flex items-center p-4 rounded-lg bg-gradient-to-r from-gray-50 to-indigo-50 hover:from-indigo-50 hover:to-purple-50 transition-all duration-300 group">
+            <span class="mr-3 text-lg transition-transform group-hover:scale-110">{{ link.icon }}</span>
+            <div class="flex-1">
+              <span class="text-sm font-medium text-gray-700 block">{{ link.label }}</span>
+              <a :href="link.url" class="resume-link text-sm" target="_blank">{{ link.url }}</a>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </div>
