@@ -1,7 +1,7 @@
 <template>
   <div class="resume-container min-h-screen bg-white">
     <!-- 简历头部 -->
-    <div class="px-12 pt-12 pb-8">
+    <div class="px-8 pt-10 pb-6">
       <!-- 语言切换和姓名行 -->
       <div class="flex justify-between items-start mb-4">
         <div class="text-sm text-gray-500">
@@ -27,7 +27,7 @@
               {{ resumeData.personalInfo.phone }}
             </span>
             <a :href="`mailto:${resumeData.personalInfo.email}`" class="resume-link flex items-center text-sm">
-              <span class="mr-1">📧</span>
+              <span class="mr-1">✉</span>
               {{ resumeData.personalInfo.email }}
             </a>
           </div>
@@ -49,7 +49,7 @@
     </div>
 
     <!-- 主要内容区域 -->
-    <div class="px-12 pb-12 space-y-12">
+    <div class="px-8 pb-10 space-y-8">
       <!-- 工作经历 -->
       <section>
         <h2 class="section-title">工作经历</h2>

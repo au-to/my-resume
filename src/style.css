@@ -14,10 +14,23 @@ body {
   background-color: #f8fafc;
 }
 
+/* 打印样式优化 */
+@media print {
+  .resume-container {
+    box-shadow: none;
+    margin: 0;
+    border-radius: 0;
+  }
+  
+  body {
+    background-color: white;
+  }
+}
+
 /* 简历容器样式 */
 .resume-container {
   max-width: 850px;
-  margin: 0 auto;
+  margin: 2rem auto;
   background: white;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   border-radius: 8px;
@@ -43,7 +56,7 @@ body {
 
 /* 标题样式 */
 .section-title {
-  @apply text-2xl font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200;
+  @apply text-xl font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200;
 }
 
 /* 项目和经历卡片 */
