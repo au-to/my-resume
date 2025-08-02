@@ -20,10 +20,10 @@
       <!-- 联系信息 -->
       <div class="flex justify-end mb-4">
         <div class="text-right text-sm text-gray-600 space-y-2">
-          <div class="text-sm">{{ resumeData.personalInfo.location }}</div>
+          <div class="text-sm">{{ resumeData.personalInfo.location }} {{ resumeData.personalInfo.job }}</div>
           <div class="flex items-center justify-end space-x-6">
             <span class="flex items-center text-sm">
-              <span class="mr-1">📱</span>
+              <span>📱</span>
               {{ resumeData.personalInfo.phone }}
             </span>
             <a :href="`mailto:${resumeData.personalInfo.email}`" class="resume-link flex items-center text-sm">
@@ -79,10 +79,10 @@
             </div>
 
             <!-- 工作内容 -->
-            <div class="experience-content">
-              <h4 class="font-semibold mb-3 text-gray-700 text-base">{{ experience.title }}</h4>
+            <div class="experience-content mt-4" v-for="(project, index) in experience.projects" :key="index">
+              <h4 class="font-semibold mb-3 text-gray-700 text-base">{{ project.name }}</h4>
               <ul class="space-y-3 text-sm text-gray-700">
-                <li v-for="(achievement, idx) in experience.achievements" :key="idx" class="flex">
+                <li v-for="(achievement, idx) in project.descriptions" :key="idx" class="flex">
                   <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
                   <span class="flex-1 leading-6">{{ achievement }}</span>
                 </li>
@@ -97,7 +97,7 @@
         <h2 class="section-title">个人项目</h2>
         <div class="space-y-6">
           <div 
-            v-for="(project, index) in resumeData.projects" 
+            v-for="(project, index) in resumeData.personalProjects" 
             :key="index"
             class="experience-card"
           >
@@ -171,7 +171,8 @@ const resumeData = ref({
   personalInfo: {
     name: 'Ryan',
     status: '求职中',
-    location: '北京    前端开发',
+    location: '北京',
+    job: '前端开发',
     phone: '18712764947',
     email: 'zhaohubiao553@gmail.com'
   },
@@ -182,12 +183,25 @@ const resumeData = ref({
       position: '前端开发工程师',
       dateRange: '2023-06 ~ 2025-04',
       technologies: ['Vue', 'JavaScript', 'TypeScript', 'Vite', 'Webpack', 'Node.js'],
-      title: '企业级动态页签 & 路由管理框架',
-      achievements: [
-        '本项目旨在为复杂的 SPA 应用提供一种可扩展、易于维护的动态页签框架，通过与 Vue Router 深度集成，确保每个页签与路由状态同步，提升用户体验，适用工具自有多项隐型的后台管理系统，支持高效的页面切换和组件缓存',
-        '设计并实现了基于 Vue 3 和 Vue Router 的动态页签管理框架，解决了页面回显合意理和路由同步的难题',
-        '实现了精细化的基于页签的路由历史控制，确保不同页签之间的状态隔离',
-        '通过管理页面组件实例，避免了频繁的组件重建和页面重渲，显著提升了应用性能'
+      projects: [
+        {
+          name: '企业级动态页签 & 路由管理框架',
+          descriptions: [
+            '本项目旨在为复杂的 SPA 应用提供一种可扩展、易于维护的动态页签框架，通过与 Vue Router 深度集成，确保每个页签与路由状态同步，提升用户体验，适用工具自有多项隐型的后台管理系统，支持高效的页面切换和组件缓存',
+            '设计并实现了基于 Vue 3 和 Vue Router 的动态页签管理框架，解决了页面回显合意理和路由同步的难题',
+            '实现了精细化的基于页签的路由历史控制，确保不同页签之间的状态隔离',
+            '通过管理页面组件实例，避免了频繁的组件重建和页面重渲，显著提升了应用性能'
+          ]
+        },
+        {
+          name: '企业级动态页签 & 路由管理框架',
+          descriptions: [
+            '本项目旨在为复杂的 SPA 应用提供一种可扩展、易于维护的动态页签框架，通过与 Vue Router 深度集成，确保每个页签与路由状态同步，提升用户体验，适用工具自有多项隐型的后台管理系统，支持高效的页面切换和组件缓存',
+            '设计并实现了基于 Vue 3 和 Vue Router 的动态页签管理框架，解决了页面回显合意理和路由同步的难题',
+            '实现了精细化的基于页签的路由历史控制，确保不同页签之间的状态隔离',
+            '通过管理页面组件实例，避免了频繁的组件重建和页面重渲，显著提升了应用性能'
+          ]
+        }
       ]
     },
     {
@@ -195,15 +209,27 @@ const resumeData = ref({
       position: '前端开发实习生',
       dateRange: '2022-08 ~ 2023-06',
       technologies: ['Vue', 'JavaScript', 'Node.js', 'Webpack', 'Egg.js'],
-      title: '供应商管理',
-      achievements: [
-        '从邀请供应商、供应商认证、供应商入围、供应商备案、在线邀约等全生命周期管理',
-        '通过前端分页技术，解决了在线分页的数据存储痛点（单次可达 10000 条），提升了页面性能',
-        '参与并拓展行业务求来代，业务组件封装'
+      projects: [
+        {
+          name: '供应商管理',
+          descriptions: [
+            '从邀请供应商、供应商认证、供应商入围、供应商备案、在线邀约等全生命周期管理',
+            '通过前端分页技术，解决了在线分页的数据存储痛点（单次可达 10000 条），提升了页面性能',
+            '参与并拓展行业务求来代，业务组件封装'  
+          ]
+        },
+        {
+          name: '供应商管理',
+          descriptions: [
+            '从邀请供应商、供应商认证、供应商入围、供应商备案、在线邀约等全生命周期管理',
+            '通过前端分页技术，解决了在线分页的数据存储痛点（单次可达 10000 条），提升了页面性能',
+            '参与并拓展行业务求来代，业务组件封装'  
+          ]
+        }
       ]
     }
   ],
-  projects: [
+  personalProjects: [
     {
       name: '国际化自动提取 & 智能翻译工具',
       descriptions: [
