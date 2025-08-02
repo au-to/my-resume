@@ -64,29 +64,6 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.skill-tag:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
-}
-
-.skill-tag:nth-child(even) {
-  background: linear-gradient(135deg, var(--secondary-color) 0%, #059669 100%);
-  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
-}
-
-.skill-tag:nth-child(even):hover {
-  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
-}
-
-.skill-tag:nth-child(3n) {
-  background: linear-gradient(135deg, var(--accent-color) 0%, #d97706 100%);
-  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.2);
-}
-
-.skill-tag:nth-child(3n):hover {
-  box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3);
-}
-
 /* 状态标签样式 */
 .status-tag {
   @apply inline-block px-4 py-2 text-sm font-semibold text-white rounded-full;

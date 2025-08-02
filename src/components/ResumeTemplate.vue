@@ -43,7 +43,7 @@
           <span 
             v-for="skill in resumeData.skills" 
             :key="skill"
-            class="skill-tag"
+            class="inline-block px-3 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full border border-blue-200 hover:bg-blue-100 transition-all duration-200"
           >
             {{ skill }}
           </span>
@@ -108,12 +108,12 @@
             class="experience-card"
           >
             <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-              <span class="w-2 h-2 bg-green-500 rounded-full mr-3 flex-shrink-0"></span>
+              <span class="w-2 h-2 bg-blue-500 rounded-full mr-3 flex-shrink-0"></span>
               {{ project.name }}
             </h3>
             <ul class="space-y-3 text-sm text-gray-700 mb-4">
               <li v-for="(description, idx) in project.descriptions" :key="idx" class="flex items-start group">
-                <span class="text-green-500 mr-3 flex-shrink-0 w-4 h-4 flex items-center justify-center mt-1 transition-transform group-hover:scale-110">✓</span>
+                <span class="text-blue-500 mr-3 flex-shrink-0 w-4 h-4 flex items-center justify-center mt-1 transition-transform group-hover:scale-110">✓</span>
                 <span class="flex-1 leading-relaxed">{{ description }}</span>
               </li>
             </ul>
@@ -123,7 +123,7 @@
               <span 
                 v-for="tech in project.technologies" 
                 :key="tech"
-                class="inline-block px-3 py-1.5 text-xs font-semibold text-green-700 bg-green-50 rounded-full border border-green-200 hover:bg-green-100 transition-all duration-200"
+                class="inline-block px-3 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full border border-blue-200 hover:bg-blue-100 transition-all duration-200"
               >
                 {{ tech }}
               </span>
@@ -139,7 +139,7 @@
           <div class="flex justify-between items-start">
             <div>
               <h3 class="text-lg font-semibold text-gray-800 flex items-center">
-                <span class="w-2 h-2 bg-yellow-500 rounded-full mr-3 flex-shrink-0"></span>
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-3 flex-shrink-0"></span>
                 {{ resumeData.education.school }}
               </h3>
               <p class="text-base text-gray-600 mt-2 ml-5">{{ resumeData.education.degree }}</p>
