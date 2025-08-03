@@ -209,14 +209,32 @@ import { ref } from 'vue'
 const isExporting = ref(false)
 const pdfFormat = ref('auto')
 
-// 计算动态页面高度
+// 专业PDF高度计算 - 确保准确的页面高度
 const calculatePageHeight = () => {
   const container = document.querySelector('.resume-container')
   if (container) {
-    const containerHeight = container.scrollHeight
-    // 添加一些额外空间以确保完整显示
-    const extraSpace = 100
-    return `${containerHeight + extraSpace}px`
+    // 临时移除所有transform和scale，获取真实高度
+    const originalStyle = container.style.transform
+    container.style.transform = 'none'
+    
+    // 获取准确的内容高度
+    const rect = container.getBoundingClientRect()
+    const scrollHeight = container.scrollHeight
+    const contentHeight = Math.max(rect.height, scrollHeight)
+    
+    // 恢复原始样式
+    container.style.transform = originalStyle
+    
+    // 添加适当的边距空间 (顶部+底部 = 0.8英寸 = 76.8pt ≈ 102px)
+    const marginSpace = 120
+    const totalHeight = contentHeight + marginSpace
+    
+    // 转换为英寸 (96 DPI)
+    const heightInInches = totalHeight / 96
+    
+    console.log(`计算页面高度: ${contentHeight}px + ${marginSpace}px margin = ${totalHeight}px (${heightInInches.toFixed(2)}in)`)
+    
+    return `${heightInInches}in`
   }
   return 'auto'
 }
@@ -231,13 +249,13 @@ const exportPDF = async () => {
     // 获取当前页面URL
     const currentUrl = window.location.href
     
-    // 根据选择的格式配置PDF选项
+    // 专业PDF配置选项
     let pdfOptions = {
       printBackground: true,
       margin: {
-        top: '0.5in',
+        top: '0.4in',     // 专业简历的较小边距
         right: '0.5in',
-        bottom: '0.5in',
+        bottom: '0.4in',
         left: '0.5in'
       },
       pageRanges: '',
@@ -245,16 +263,25 @@ const exportPDF = async () => {
       tagged: false,
       scale: 1.0,
       displayHeaderFooter: false,
-      landscape: false
+      landscape: false,
+      preferCSSPageSize: true,  // 使用CSS中定义的页面尺寸
+      format: undefined  // 让CSS控制格式
     }
 
-    // 根据用户选择的格式设置页面尺寸
+    // 智能页面尺寸设置
     if (pdfFormat.value === 'auto') {
       const dynamicHeight = calculatePageHeight()
       console.log('计算的页面高度:', dynamicHeight)
-      pdfOptions.width = '8.27in'  // A4宽度
-      pdfOptions.height = dynamicHeight === 'auto' ? '11.69in' : dynamicHeight
-      pdfOptions.preferCSSPageSize = false
+      
+      if (dynamicHeight !== 'auto') {
+        pdfOptions.width = '8.27in'  // A4标准宽度
+        pdfOptions.height = dynamicHeight
+        pdfOptions.preferCSSPageSize = false
+      } else {
+        // 如果计算失败，使用A4标准尺寸
+        pdfOptions.format = 'A4'
+        pdfOptions.preferCSSPageSize = true
+      }
     } else if (pdfFormat.value === 'A3') {
       pdfOptions.format = 'A3'
       pdfOptions.preferCSSPageSize = false
@@ -262,8 +289,9 @@ const exportPDF = async () => {
       pdfOptions.format = 'Legal'
       pdfOptions.preferCSSPageSize = false
     } else {
+      // A4标准格式 - 推荐的专业简历格式
       pdfOptions.format = 'A4'
-      pdfOptions.preferCSSPageSize = false
+      pdfOptions.preferCSSPageSize = true
     }
     
     // 调用后端API生成PDF

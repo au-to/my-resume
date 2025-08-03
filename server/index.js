@@ -42,12 +42,15 @@ app.post('/api/generate-pdf', async (req, res) => {
     console.log('创建新页面...')
     const page = await browser.newPage()
     
-    // 设置视口大小
+    // 设置高质量视口 - 针对PDF优化
     await page.setViewport({
       width: 1200,
-      height: 800,
-      deviceScaleFactor: 2
+      height: 1600,      // 增加高度以适应A4比例
+      deviceScaleFactor: 2  // 高DPI确保清晰度
     })
+
+    // 设置用户代理，确保获得打印优化的版本
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')
 
     console.log('导航到页面:', url)
     const response = await page.goto(url, {
@@ -58,27 +61,45 @@ app.post('/api/generate-pdf', async (req, res) => {
     console.log('页面响应状态:', response.status())
     console.log('页面标题:', await page.title())
 
-    // 等待字体加载完成
+    // 等待字体和样式完全加载
     await page.evaluateHandle('document.fonts.ready')
     
-    // 额外等待确保所有内容加载完成
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    // 注入CSS确保PDF输出质量
+    await page.addStyleTag({
+      content: `
+        @media print {
+          body { 
+            -webkit-print-color-adjust: exact !important;
+            color-adjust: exact !important; 
+          }
+          * {
+            font-smoothing: antialiased !important;
+            -webkit-font-smoothing: antialiased !important;
+            -moz-osx-font-smoothing: grayscale !important;
+          }
+        }
+      `
+    })
+    
+    // 确保所有样式和内容完全加载
+    await new Promise(resolve => setTimeout(resolve, 3000))
 
     console.log('生成PDF...')
     
-    // 构建PDF选项，支持自定义尺寸
+    // 专业PDF生成选项配置
     const pdfOptions = {
       printBackground: true,
-      preferCSSPageSize: false,
+      preferCSSPageSize: true,  // 使用CSS中的@page设置
       margin: {
-        top: '0.5in',
-        right: '0.5in',
-        bottom: '0.5in',
+        top: '0.4in',     // 减少顶部边距
+        right: '0.5in',   // 保持左右边距
+        bottom: '0.4in',  // 减少底部边距
         left: '0.5in'
       },
       displayHeaderFooter: false,
       omitBackground: false,
-      tagged: false,
+      tagged: false,  // 设为false提高兼容性
+      scale: 1.0,     // 确保1:1缩放
       ...options
     }
     
