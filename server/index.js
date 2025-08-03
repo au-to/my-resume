@@ -65,8 +65,9 @@ app.post('/api/generate-pdf', async (req, res) => {
     await new Promise(resolve => setTimeout(resolve, 2000))
 
     console.log('生成PDF...')
+    
+    // 构建PDF选项，支持自定义尺寸
     const pdfOptions = {
-      format: 'A4',
       printBackground: true,
       preferCSSPageSize: false,
       margin: {
@@ -79,6 +80,16 @@ app.post('/api/generate-pdf', async (req, res) => {
       omitBackground: false,
       tagged: false,
       ...options
+    }
+    
+    // 如果提供了自定义宽度和高度，则使用自定义尺寸，否则使用A4
+    if (options.width && options.height) {
+      pdfOptions.width = options.width
+      pdfOptions.height = options.height
+      // 删除format选项，因为我们使用自定义尺寸
+      delete pdfOptions.format
+    } else {
+      pdfOptions.format = 'A4'
     }
     
     console.log('PDF生成选项:', JSON.stringify(pdfOptions, null, 2))

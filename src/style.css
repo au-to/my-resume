@@ -22,10 +22,19 @@ body {
     print-color-adjust: exact !important;
   }
 
-  body {
+  @page {
+    /* 设置页面尺寸，让内容自适应高度 */
+    size: A4 portrait;
+    margin: 0.5in;
+  }
+
+  html, body {
     background-color: white !important;
     margin: 0 !important;
     padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   .resume-container {
@@ -33,8 +42,12 @@ body {
     margin: 0 !important;
     border-radius: 0 !important;
     max-width: none !important;
+    width: 100% !important;
     min-height: auto !important;
+    height: auto !important;
     background: white !important;
+    page-break-inside: auto;
+    overflow: visible !important;
   }
 
   /* 隐藏导出按钮 */
@@ -42,22 +55,64 @@ body {
     display: none !important;
   }
 
-  /* 优化页面断点 */
+  /* 优化页面断点 - 强化版 */
+  
+  /* 整个简历头部区域避免分页 */
+  .resume-container > div:first-child {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  /* 所有主要区块避免分页 */
   section {
-    page-break-inside: avoid;
-    break-inside: avoid;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    page-break-before: auto;
+    break-before: auto;
   }
 
+  /* 工作经历卡片避免分页 */
   .experience-card {
-    page-break-inside: avoid;
-    break-inside: avoid;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
     margin-bottom: 1.5rem !important;
+    orphans: 3;
+    widows: 3;
   }
 
   /* 确保标题不会孤立在页面底部 */
   .section-title {
-    page-break-after: avoid;
-    break-after: avoid;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* 项目描述避免分页 */
+  .experience-content {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* 技能标签区域避免分页 */
+  .skill-tag {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* 列表项避免分页 */
+  ul {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  li {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    orphans: 2;
+    widows: 2;
   }
 
   /* 优化字体大小和行高 */

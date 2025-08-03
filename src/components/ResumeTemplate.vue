@@ -1,11 +1,22 @@
 <template>
   <div class="resume-container min-h-screen bg-white">
     <!-- PDF导出按钮 - 仅在非打印模式下显示 -->
-    <div class="print:hidden fixed top-4 right-4 z-10">
+    <div class="print:hidden fixed top-4 right-4 z-10 space-y-2">
+      <!-- 导出格式选择 -->
+      <div class="bg-white rounded-lg shadow-lg p-3 text-sm">
+        <label class="block text-gray-700 mb-2">PDF尺寸:</label>
+        <select v-model="pdfFormat" class="w-full p-1 border rounded text-sm">
+          <option value="auto">自适应高度</option>
+          <option value="A4">A4标准</option>
+          <option value="A3">A3大页面</option>
+          <option value="Legal">Legal格式</option>
+        </select>
+      </div>
+      
       <button 
         @click="exportPDF"
         :disabled="isExporting"
-        class="pdf-export-btn"
+        class="pdf-export-btn w-full"
       >
         <svg v-if="!isExporting" class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
@@ -196,6 +207,19 @@ import { ref } from 'vue'
 
 // 导出状态
 const isExporting = ref(false)
+const pdfFormat = ref('auto')
+
+// 计算动态页面高度
+const calculatePageHeight = () => {
+  const container = document.querySelector('.resume-container')
+  if (container) {
+    const containerHeight = container.scrollHeight
+    // 添加一些额外空间以确保完整显示
+    const extraSpace = 100
+    return `${containerHeight + extraSpace}px`
+  }
+  return 'auto'
+}
 
 // PDF导出功能
 const exportPDF = async () => {
@@ -207,6 +231,41 @@ const exportPDF = async () => {
     // 获取当前页面URL
     const currentUrl = window.location.href
     
+    // 根据选择的格式配置PDF选项
+    let pdfOptions = {
+      printBackground: true,
+      margin: {
+        top: '0.5in',
+        right: '0.5in',
+        bottom: '0.5in',
+        left: '0.5in'
+      },
+      pageRanges: '',
+      omitBackground: false,
+      tagged: false,
+      scale: 1.0,
+      displayHeaderFooter: false,
+      landscape: false
+    }
+
+    // 根据用户选择的格式设置页面尺寸
+    if (pdfFormat.value === 'auto') {
+      const dynamicHeight = calculatePageHeight()
+      console.log('计算的页面高度:', dynamicHeight)
+      pdfOptions.width = '8.27in'  // A4宽度
+      pdfOptions.height = dynamicHeight === 'auto' ? '11.69in' : dynamicHeight
+      pdfOptions.preferCSSPageSize = false
+    } else if (pdfFormat.value === 'A3') {
+      pdfOptions.format = 'A3'
+      pdfOptions.preferCSSPageSize = false
+    } else if (pdfFormat.value === 'Legal') {
+      pdfOptions.format = 'Legal'
+      pdfOptions.preferCSSPageSize = false
+    } else {
+      pdfOptions.format = 'A4'
+      pdfOptions.preferCSSPageSize = false
+    }
+    
     // 调用后端API生成PDF
     const response = await fetch('/api/generate-pdf', {
       method: 'POST',
@@ -215,16 +274,7 @@ const exportPDF = async () => {
       },
       body: JSON.stringify({
         url: currentUrl,
-        options: {
-          format: 'A4',
-          printBackground: true,
-          margin: {
-            top: '0.5in',
-            right: '0.5in',
-            bottom: '0.5in',
-            left: '0.5in'
-          }
-        }
+        options: pdfOptions
       })
     })
     
