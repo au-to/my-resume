@@ -92,7 +92,7 @@
       <!-- 工作经历 -->
       <section>
         <h2 class="section-title">工作经历</h2>
-        <div class="space-y-10">
+        <div class="space-y-6">
           <div 
             v-for="(experience, index) in resumeData.experiences" 
             :key="index"
@@ -209,7 +209,7 @@ import { ref } from 'vue'
 const isExporting = ref(false)
 const pdfFormat = ref('auto')
 
-// 专业PDF高度计算 - 确保准确的页面高度
+// PDF高度计算
 const calculatePageHeight = () => {
   const container = document.querySelector('.resume-container')
   if (container) {
@@ -231,9 +231,7 @@ const calculatePageHeight = () => {
     
     // 转换为英寸 (96 DPI)
     const heightInInches = totalHeight / 96
-    
-    console.log(`计算页面高度: ${contentHeight}px + ${marginSpace}px margin = ${totalHeight}px (${heightInInches.toFixed(2)}in)`)
-    
+        
     return `${heightInInches}in`
   }
   return 'auto'
@@ -253,7 +251,7 @@ const exportPDF = async () => {
     let pdfOptions = {
       printBackground: true,
       margin: {
-        top: '0.4in',     // 专业简历的较小边距
+        top: '0.4in',
         right: '0.5in',
         bottom: '0.4in',
         left: '0.5in'
@@ -271,7 +269,6 @@ const exportPDF = async () => {
     // 智能页面尺寸设置
     if (pdfFormat.value === 'auto') {
       const dynamicHeight = calculatePageHeight()
-      console.log('计算的页面高度:', dynamicHeight)
       
       if (dynamicHeight !== 'auto') {
         pdfOptions.width = '8.27in'  // A4标准宽度
@@ -338,11 +335,8 @@ const exportPDF = async () => {
     
     // 清理URL对象
     URL.revokeObjectURL(url)
-    
-    console.log('PDF导出成功')
-    
+        
   } catch (error) {
-    console.error('PDF导出失败:', error)
     alert(`PDF导出失败: ${error.message}`)
   } finally {
     isExporting.value = false
