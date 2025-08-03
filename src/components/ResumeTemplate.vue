@@ -1,5 +1,23 @@
 <template>
   <div class="resume-container min-h-screen bg-white">
+    <!-- PDF导出按钮 - 仅在非打印模式下显示 -->
+    <div class="print:hidden fixed top-4 right-4 z-10">
+      <button 
+        @click="exportPDF"
+        :disabled="isExporting"
+        class="pdf-export-btn"
+      >
+        <svg v-if="!isExporting" class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        <svg v-else class="w-4 h-4 mr-2 animate-spin" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        {{ isExporting ? '生成中...' : '导出PDF' }}
+      </button>
+    </div>
+
     <!-- 简历头部 -->
     <div class="px-8 pt-10 pb-6">
       <!-- 语言切换和姓名行 -->
@@ -175,6 +193,83 @@
 
 <script setup>
 import { ref } from 'vue'
+
+// 导出状态
+const isExporting = ref(false)
+
+// PDF导出功能
+const exportPDF = async () => {
+  if (isExporting.value) return
+  
+  try {
+    isExporting.value = true
+    
+    // 获取当前页面URL
+    const currentUrl = window.location.href
+    
+    // 调用后端API生成PDF
+    const response = await fetch('/api/generate-pdf', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        url: currentUrl,
+        options: {
+          format: 'A4',
+          printBackground: true,
+          margin: {
+            top: '0.5in',
+            right: '0.5in',
+            bottom: '0.5in',
+            left: '0.5in'
+          }
+        }
+      })
+    })
+    
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(errorData.message || 'PDF生成失败')
+    }
+    
+    // 检查响应类型
+    const contentType = response.headers.get('content-type')
+    if (!contentType || !contentType.includes('application/pdf')) {
+      throw new Error('服务器返回的不是PDF文件')
+    }
+    
+    // 获取PDF数据
+    const blob = await response.blob()
+    
+    // 验证blob大小
+    if (blob.size === 0) {
+      throw new Error('PDF文件为空')
+    }
+    
+    // 创建下载链接
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `简历-${resumeData.value.personalInfo.name}-${new Date().toISOString().split('T')[0]}.pdf`
+    
+    // 触发下载
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    
+    // 清理URL对象
+    URL.revokeObjectURL(url)
+    
+    console.log('PDF导出成功')
+    
+  } catch (error) {
+    console.error('PDF导出失败:', error)
+    alert(`PDF导出失败: ${error.message}`)
+  } finally {
+    isExporting.value = false
+  }
+}
 
 // 简历数据
 const resumeData = ref({

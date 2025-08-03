@@ -12,10 +12,22 @@ export default defineConfig([
 
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
 
+  // Browser environment for client-side code
   {
+    files: ['src/**/*.{js,mjs,jsx,vue}'],
     languageOptions: {
       globals: {
         ...globals.browser,
+      },
+    },
+  },
+
+  // Node.js environment for server-side code
+  {
+    files: ['server/**/*.js', 'vite.config.js', 'tailwind.config.js', 'postcss.config.js', 'eslint.config.js'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
       },
     },
   },

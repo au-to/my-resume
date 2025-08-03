@@ -16,14 +16,102 @@ body {
 
 /* 打印样式优化 */
 @media print {
-  .resume-container {
-    box-shadow: none;
-    margin: 0;
-    border-radius: 0;
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
-  
+
   body {
-    background-color: white;
+    background-color: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .resume-container {
+    box-shadow: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    max-width: none !important;
+    min-height: auto !important;
+    background: white !important;
+  }
+
+  /* 隐藏导出按钮 */
+  .pdf-export-btn {
+    display: none !important;
+  }
+
+  /* 优化页面断点 */
+  section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .experience-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* 确保标题不会孤立在页面底部 */
+  .section-title {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* 优化字体大小和行高 */
+  .section-title {
+    font-size: 18px !important;
+    margin-bottom: 12px !important;
+  }
+
+  h1 {
+    font-size: 36px !important;
+    margin-bottom: 8px !important;
+  }
+
+  h3 {
+    font-size: 16px !important;
+  }
+
+  /* 确保技能标签和状态标签正确显示 */
+  .skill-tag,
+  .status-tag {
+    background-color: #374151 !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* 优化链接显示 */
+  .resume-link {
+    color: #2563eb !important;
+    text-decoration: none !important;
+  }
+
+  /* 确保图标正确显示 */
+  svg {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* 优化间距 */
+  .px-8 {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  .pt-10 {
+    padding-top: 2rem !important;
+  }
+
+  .pb-6 {
+    padding-bottom: 1.5rem !important;
+  }
+
+  .pb-10 {
+    padding-bottom: 2rem !important;
   }
 }
 
@@ -95,4 +183,20 @@ body {
 
 .degree-info {
   @apply text-base text-gray-600 mt-1;
+}
+
+/* PDF导出按钮样式 */
+.pdf-export-btn {
+  @apply flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow-lg transition-all duration-200;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600;
+}
+
+.pdf-export-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3);
+}
+
+.pdf-export-btn:disabled:hover {
+  transform: none;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }

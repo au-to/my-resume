@@ -8,13 +8,20 @@
   },
   "scripts": {
     "dev": "vite",
+    "dev:server": "node server/index.js",
+    "dev:full": "concurrently \"npm run dev\" \"npm run dev:server\"",
     "build": "vite build",
+    "build:server": "npm run build && node server/index.js",
     "preview": "vite preview",
+    "start": "node server/index.js",
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix",
     "lint": "run-s lint:*"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "puppeteer": "^24.15.0",
     "vue": "^3.5.18"
   },
   "devDependencies": {
@@ -22,6 +29,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@vitejs/plugin-vue": "^6.0.1",
     "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.0",
     "eslint": "^9.31.0",
     "eslint-plugin-oxlint": "~1.8.0",
     "eslint-plugin-vue": "~10.3.0",
