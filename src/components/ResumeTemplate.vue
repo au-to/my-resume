@@ -120,7 +120,7 @@
             <!-- 工作内容 -->
             <div class="experience-content mt-4" v-for="(project, index) in experience.projects" :key="index">
               <h4 class="font-semibold mb-3 text-gray-700 text-base">{{ project.name }}</h4>
-              <ul class="space-y-3 text-sm text-gray-700">
+              <ul class="space-y-1 text-sm text-gray-700">
                 <li v-for="(achievement, idx) in project.descriptions" :key="idx" class="flex">
                   <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
                   <span class="flex-1 leading-6">{{ achievement }}</span>
@@ -141,7 +141,7 @@
             class="experience-card"
           >
             <h3 class="text-lg font-semibold text-gray-700 mb-2">{{ project.name }}</h3>
-            <ul class="space-y-2 text-sm text-gray-700 mb-3">
+            <ul class="space-y-1 text-sm text-gray-700 mb-3">
               <li v-for="(description, idx) in project.descriptions" :key="idx" class="flex">
                 <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
                 <span class="flex-1 leading-6">{{ description }}</span>
@@ -179,7 +179,7 @@
       <!-- 自我评价 -->
       <section>
         <h2 class="section-title">自我评价</h2>
-        <ul class="space-y-2 text-sm text-gray-700">
+        <ul class="space-y-1 text-sm text-gray-700">
           <li v-for="(evaluation, index) in resumeData.selfEvaluation" :key="index" class="flex">
             <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
             <span class="flex-1 leading-6">{{ evaluation }}</span>
