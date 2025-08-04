@@ -125,16 +125,6 @@ app.post('/api/generate-pdf', async (req, res) => {
       throw new Error('生成的PDF文件为空')
     }
     
-    // 调试PDF文件头信息
-    const pdfHeader = pdf.toString('ascii', 0, 10)
-    console.log('PDF文件头:', pdfHeader)
-    console.log('PDF前16字节 (hex):', pdf.subarray(0, 16).toString('hex'))
-    
-    // 暂时移除严格的PDF格式验证，用于调试
-    // if (!pdf.toString('ascii', 0, 4).startsWith('%PDF')) {
-    //   throw new Error('生成的文件不是有效的PDF格式')
-    // }
-    
     // 设置响应头
     res.setHeader('Content-Type', 'application/pdf')
     res.setHeader('Content-Disposition', 'attachment; filename="resume.pdf"')

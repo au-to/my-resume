@@ -210,29 +210,23 @@ const pdfFormat = ref('single-page')
 // PDF高度计算
 const calculatePageHeight = () => {
   const container = document.querySelector('.resume-container')
-  if (container) {
-    // 临时移除所有transform和scale，获取真实高度
-    const originalStyle = container.style.transform
-    container.style.transform = 'none'
-    
-    // 获取准确的内容高度
-    const rect = container.getBoundingClientRect()
-    const scrollHeight = container.scrollHeight
-    const contentHeight = Math.max(rect.height, scrollHeight)
-    
-    // 恢复原始样式
-    container.style.transform = originalStyle
-    
-    // 添加适当的边距空间 (顶部+底部 = 0.8英寸 = 76.8pt ≈ 102px)
-    const marginSpace = 120
-    const totalHeight = contentHeight + marginSpace
-    
-    // 转换为英寸 (96 DPI)
-    const heightInInches = totalHeight / 96
-        
-    return `${heightInInches}in`
-  }
-  return 'auto'
+  if (!container) return 'auto'
+
+  // 强制移除 transform
+  container.style.setProperty('transform', 'none', 'important')
+
+  // 等待重绘（可选），确保变更生效
+  const contentHeight = container.scrollHeight
+
+  // 恢复 transform（如果之前保存了）
+  container.style.removeProperty('transform')
+
+  // 上下边距加起来 = 0.8in ≈ 77px（可根据实际需要调整）
+  const marginSpace = 77
+  const totalHeight = contentHeight + marginSpace
+
+  const heightInInches = totalHeight / 96
+  return `${heightInInches}in`
 }
 
 // PDF导出功能
