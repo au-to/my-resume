@@ -11,7 +11,6 @@ import ResumeTemplate from './components/ResumeTemplate.vue'
 <style scoped>
 .app {
   min-height: 100vh;
-  background-color: #f8fafc;
   padding: 2rem 0;
 }
 </style>
