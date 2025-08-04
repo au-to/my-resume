@@ -5,169 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 自定义样式 */
-
+/* 全局样式 */
 body {
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
   color: #334155;
   background-color: #f8fafc;
-}
-
-/* 打印样式优化 */
-@media print {
-  * {
-    -webkit-print-color-adjust: exact !important;
-    color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  @page {
-    /* 设置页面尺寸，让内容自适应高度 */
-    size: A4 portrait;
-    margin: 0.5in;
-  }
-
-  html, body {
-    background-color: white !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-
-  .resume-container {
-    box-shadow: none !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    max-width: none !important;
-    width: 100% !important;
-    min-height: auto !important;
-    height: auto !important;
-    background: white !important;
-    page-break-inside: auto;
-    overflow: visible !important;
-  }
-
-  /* 隐藏导出按钮 */
-  .pdf-export-btn {
-    display: none !important;
-  }
-
-  /* 优化页面断点 - 强化版 */
-  
-  /* 整个简历头部区域避免分页 */
-  .resume-container > div:first-child {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-  }
-  
-  /* 所有主要区块避免分页 */
-  section {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-    page-break-before: auto;
-    break-before: auto;
-  }
-
-  /* 工作经历卡片避免分页 */
-  .experience-card {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-    margin-bottom: 1.5rem !important;
-    orphans: 3;
-    widows: 3;
-  }
-
-  /* 确保标题不会孤立在页面底部 */
-  .section-title {
-    page-break-after: avoid !important;
-    break-after: avoid !important;
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-    orphans: 2;
-    widows: 2;
-  }
-
-  /* 项目描述避免分页 */
-  .experience-content {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-  }
-
-  /* 技能标签区域避免分页 */
-  .skill-tag {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-  }
-
-  /* 列表项避免分页 */
-  ul {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-  }
-  
-  li {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-    orphans: 2;
-    widows: 2;
-  }
-
-  /* 优化字体大小和行高 */
-  .section-title {
-    font-size: 18px !important;
-    margin-bottom: 12px !important;
-  }
-
-  h1 {
-    font-size: 36px !important;
-    margin-bottom: 8px !important;
-  }
-
-  h3 {
-    font-size: 16px !important;
-  }
-
-  /* 确保技能标签和状态标签正确显示 */
-  .skill-tag,
-  .status-tag {
-    background-color: #374151 !important;
-    color: white !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  /* 优化链接显示 */
-  .resume-link {
-    color: #2563eb !important;
-    text-decoration: none !important;
-  }
-
-  /* 确保图标正确显示 */
-  svg {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  /* 优化间距 */
-  .px-8 {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
-  }
-
-  .pt-10 {
-    padding-top: 2rem !important;
-  }
-
-  .pb-6 {
-    padding-bottom: 1.5rem !important;
-  }
-
-  .pb-10 {
-    padding-bottom: 2rem !important;
-  }
 }
 
 /* 简历容器样式 */
@@ -207,22 +50,27 @@ body {
   @apply mb-6 last:mb-0;
 }
 
+/* 工作经历卡片头部 */
 .experience-header {
   @apply flex justify-between items-start mb-2;
 }
 
+/* 工作经历卡片头部公司名称 */
 .company-name {
   @apply text-base font-semibold text-gray-900;
 }
 
+/* 工作经历卡片头部职位名称 */
 .position-title {
   @apply text-sm text-gray-600 mt-1;
 }
 
+/* 工作经历卡片头部时间范围 */
 .date-range {
   @apply text-base text-gray-500 whitespace-nowrap;
 }
 
+/* 工作经历卡片内容 */
 .experience-content {
   @apply text-sm text-gray-700 leading-relaxed;
 }
@@ -232,10 +80,12 @@ body {
   @apply mb-4 last:mb-0;
 }
 
+/* 教育经历卡片学校名称 */
 .school-name {
   @apply text-base font-semibold text-gray-900;
 }
 
+/* 教育经历卡片学位信息 */
 .degree-info {
   @apply text-base text-gray-600 mt-1;
 }
@@ -246,12 +96,126 @@ body {
   @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600;
 }
 
-.pdf-export-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3);
-}
 
-.pdf-export-btn:disabled:hover {
-  transform: none;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+/* 打印样式优化 */
+@media print {
+  /* 全局样式 */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* 页面样式 */
+  @page {
+    /* 设置页面尺寸，让内容自适应高度 */
+    size: A4 portrait;
+    margin: 0.5in;
+  }
+
+  /* 全局样式 */
+  html, body {
+    background-color: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* 简历容器样式 */
+  .resume-container {
+    box-shadow: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    min-height: auto !important;
+    height: auto !important;
+    background: white !important;
+    page-break-inside: auto;
+    overflow: visible !important;
+  }
+
+  /* 隐藏导出按钮 */
+  .pdf-export-btn {
+    display: none !important;
+  }
+
+  /* 确保标题不会孤立在页面底部 */
+  .section-title {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    orphans: 2;
+    widows: 2;
+  }
+  
+  /* 列表项样式 */
+  li {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* 优化字体大小和行高 */
+  .section-title {
+    font-size: 18px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* 标题样式 */
+  h1 {
+    font-size: 36px !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* 三级标题样式 */
+  h3 {
+    font-size: 16px !important;
+  }
+
+  /* 确保技能标签和状态标签正确显示 */
+  .skill-tag,
+  .status-tag {
+    background-color: #374151 !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* 优化链接显示 */
+  .resume-link {
+    color: #2563eb !important;
+    text-decoration: none !important;
+  }
+
+  /* 确保图标正确显示 */
+  svg {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* 优化间距 */
+  .px-8 {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  /* 上内边距 */
+  .pt-10 {
+    padding-top: 2rem !important;
+  }
+
+  /* 下内边距 */
+  .pb-6 {
+    padding-bottom: 1.5rem !important;
+  }
+
+  /* 下内边距 */
+  .pb-10 {
+    padding-bottom: 2rem !important;
+  }
 }
