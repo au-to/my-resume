@@ -4,12 +4,10 @@
     <div class="print:hidden fixed top-4 right-4 z-10 space-y-2">
       <!-- 导出格式选择 -->
       <div class="bg-white rounded-lg shadow-lg p-3 text-sm">
-        <label class="block text-gray-700 mb-2">PDF尺寸:</label>
+        <label class="block text-gray-700 mb-2">PDF格式:</label>
         <select v-model="pdfFormat" class="w-full p-1 border rounded text-sm">
-          <option value="auto">自适应高度</option>
-          <option value="A4">A4标准</option>
-          <option value="A3">A3大页面</option>
-          <option value="Legal">Legal格式</option>
+          <option value="single-page">不分页</option>
+          <option value="paged">分页</option>
         </select>
       </div>
       
@@ -207,7 +205,7 @@ import { ref } from 'vue'
 
 // 导出状态
 const isExporting = ref(false)
-const pdfFormat = ref('auto')
+const pdfFormat = ref('single-page')
 
 // PDF高度计算
 const calculatePageHeight = () => {
@@ -266,8 +264,9 @@ const exportPDF = async () => {
       format: undefined  // 让CSS控制格式
     }
 
-    // 智能页面尺寸设置
-    if (pdfFormat.value === 'auto') {
+    // 页面尺寸设置
+    if (pdfFormat.value === 'single-page') {
+      // 不分页：自适应高度
       const dynamicHeight = calculatePageHeight()
       
       if (dynamicHeight !== 'auto') {
@@ -279,14 +278,8 @@ const exportPDF = async () => {
         pdfOptions.format = 'A4'
         pdfOptions.preferCSSPageSize = true
       }
-    } else if (pdfFormat.value === 'A3') {
-      pdfOptions.format = 'A3'
-      pdfOptions.preferCSSPageSize = false
-    } else if (pdfFormat.value === 'Legal') {
-      pdfOptions.format = 'Legal'
-      pdfOptions.preferCSSPageSize = false
     } else {
-      // A4标准格式 - 推荐的专业简历格式
+      // 分页：A4标准格式
       pdfOptions.format = 'A4'
       pdfOptions.preferCSSPageSize = true
     }
