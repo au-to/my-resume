@@ -212,21 +212,20 @@ const calculatePageHeight = () => {
   const container = document.querySelector('.resume-container')
   if (!container) return 'auto'
 
-  // 强制移除 transform
-  container.style.setProperty('transform', 'none', 'important')
+  // 强制去掉 transform，拿到真实高度
+  const originalTransform = container.style.transform
+  container.style.transform = 'none'
 
-  // 等待重绘（可选），确保变更生效
+  // 强制同步布局
   const contentHeight = container.scrollHeight
 
-  // 恢复 transform（如果之前保存了）
-  container.style.removeProperty('transform')
+  // 如果 transform 影响高度，恢复后再次同步
+  container.style.transform = originalTransform
+  const finalHeight = container.scrollHeight // 保险起见再取一次
 
-  // 上下边距加起来 = 0.8in ≈ 77px（可根据实际需要调整）
-  const marginSpace = 77
-  const totalHeight = contentHeight + marginSpace
-
-  const heightInInches = totalHeight / 96
-  return `${heightInInches}in`
+  const marginSpace = 25
+  const totalHeight = Math.max(contentHeight, finalHeight) + marginSpace
+  return `${totalHeight / 96}in`
 }
 
 // PDF导出功能

@@ -105,12 +105,13 @@ app.post('/api/generate-pdf', async (req, res) => {
     
     // 如果提供了自定义宽度和高度，则使用自定义尺寸，否则使用A4
     if (options.width && options.height) {
-      pdfOptions.width = options.width
+      pdfOptions.width  = options.width
       pdfOptions.height = options.height
-      // 删除format选项，因为我们使用自定义尺寸
       delete pdfOptions.format
+      pdfOptions.preferCSSPageSize = false
     } else {
       pdfOptions.format = 'A4'
+      pdfOptions.preferCSSPageSize = true
     }
     
     console.log('PDF生成选项:', JSON.stringify(pdfOptions, null, 2))

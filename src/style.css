@@ -108,9 +108,8 @@ body {
 
   /* 页面样式 */
   @page {
-    /* 设置页面尺寸，让内容自适应高度 */
-    size: A4 portrait;
-    margin: 0.5in;
+    size: auto;
+    margin: 0;
   }
 
   /* 全局样式 */
@@ -133,7 +132,6 @@ body {
     min-height: auto !important;
     height: auto !important;
     background: white !important;
-    page-break-inside: auto;
     overflow: visible !important;
   }
 
@@ -144,9 +142,7 @@ body {
 
   /* 确保标题不会孤立在页面底部 */
   .section-title {
-    page-break-after: avoid !important;
     break-after: avoid !important;
-    page-break-inside: avoid !important;
     break-inside: avoid !important;
     orphans: 2;
     widows: 2;
@@ -154,7 +150,6 @@ body {
   
   /* 列表项样式 */
   li {
-    page-break-inside: avoid !important;
     break-inside: avoid !important;
     orphans: 2;
     widows: 2;
