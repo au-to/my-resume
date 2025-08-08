@@ -57,7 +57,7 @@ body {
 
 /* 工作经历卡片头部公司名称 */
 .company-name {
-  @apply text-base font-semibold text-gray-900;
+  @apply text-lg font-semibold text-gray-900;
 }
 
 /* 工作经历卡片头部职位名称 */
@@ -157,18 +157,22 @@ body {
 
   /* 优化字体大小和行高 */
   .section-title {
-    font-size: 18px !important;
+    font-size: 20px !important;
     margin-bottom: 12px !important;
   }
 
-  /* 标题样式 */
+  /* 姓名样式 */
   h1 {
-    font-size: 36px !important;
+    font-size: 48px !important;
     margin-bottom: 8px !important;
   }
 
   /* 三级标题样式 */
   h3 {
+    font-size: 18px !important;
+  }
+
+  h4 {
     font-size: 16px !important;
   }
 

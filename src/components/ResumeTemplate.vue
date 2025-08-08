@@ -98,7 +98,7 @@
           >
             <div class="experience-header">
               <div>
-                <h3 class="text-lg font-semibold text-gray-900">{{ experience.company }}</h3>
+                <h3 class="company-name">{{ experience.company }}</h3>
                 <p class="text-base text-gray-600 mt-1">{{ experience.position }}</p>
               </div>
               <span class="text-base text-gray-500 whitespace-nowrap">{{ experience.dateRange }}</span>
@@ -117,7 +117,7 @@
 
             <!-- 工作内容 -->
             <div class="experience-content mt-4" v-for="(project, index) in experience.projects" :key="index">
-              <h4 class="font-semibold mb-3 text-gray-700 text-base">{{ project.name }}</h4>
+              <h4 class="font-medium mb-3 text-gray-700 text-base">{{ project.name }}</h4>
               <ul class="space-y-1 text-sm text-gray-700">
                 <li v-for="(achievement, idx) in project.descriptions" :key="idx" class="flex">
                   <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
@@ -138,7 +138,7 @@
             :key="index"
             class="experience-card"
           >
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">{{ project.name }}</h3>
+            <h4 class="font-medium mb-3 text-gray-700 text-base">{{ project.name }}</h4>
             <ul class="space-y-1 text-sm text-gray-700 mb-3">
               <li v-for="(description, idx) in project.descriptions" :key="idx" class="flex">
                 <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
@@ -335,7 +335,7 @@ const resumeData = ref({
     name: 'Ryan',
     status: '求职中',
     location: '北京',
-    job: '前端开发',
+    job: '前端/后端/全栈开发',
     phone: '18712764947',
     email: 'zhaohubiao553@gmail.com'
   },
@@ -350,17 +350,17 @@ const resumeData = ref({
         {
           name: '生物医药大模型基础工程',
           descriptions: [
-            '负责新一代对话式生物医药研发助手 chatDD 的前后端开发',
-            '参与生物医药大模型基础工程的开发，优化工程架构',
-            '数据库重构，优化查询性能'
+            '参与新一代对话式生物医药研发助手 chatDD 的前后端开发',
+            '参与生物医药大模型基础工程开发，持续优化工程架构',
+            '数据库分库分表，查询性能优化'
           ]
         },
         {
           name: '客户中后台建设',
           descriptions: [
-            '负责用户管理后台的前端架构，从零到一搭建用户管理后台',
-            '开发了可视化的数据分析面板，支持实时查看账号活跃度、使用情况、反馈率等指标',
-            '设计实现了前端埋点系统，支持自定义埋点事件，并实时查看埋点数据'
+            '负责用户管理后台的前端工程架构，带领一名后端从零到一搭建用户管理后台',
+            '主导工程化建设，制定代码规范，统一 UI 风格，封装10+个基础组件',
+            '开发了可视化的数据分析面板，支持实时查看账号活跃度、反馈率等指标'
           ]
         }
       ]
