@@ -154,6 +154,11 @@ body {
     background: white;
     overflow: visible;
   }
+
+  /* 解决小屏幕下技能标签换行重叠的问题 */
+  .skill-tag {
+    margin-bottom: 0.5rem;
+  }
 }
 
 /* 打印样式优化 */
