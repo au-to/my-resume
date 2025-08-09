@@ -17,10 +17,27 @@ body {
 .resume-container {
   max-width: 850px;
   margin: 2rem auto;
-  background: white;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   border-radius: 8px;
   overflow: hidden;
+  min-height: 100vh;
+  background: white;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.resume-header {
+  @apply px-8 pt-10 pb-6;
+}
+
+.header-container {
+  @apply flex justify-between items-start mb-4;
+}
+
+.pdf-export-btn-container {
+  @apply fixed top-4 right-4 z-10 space-y-2;
+}
+
+.main-content {
+  @apply px-8 pb-10 space-y-8;
 }
 
 /* 技能标签样式 */
@@ -37,7 +54,7 @@ body {
 
 /* 链接样式 */
 .resume-link {
-  @apply text-blue-600 hover:text-blue-800 transition-colors duration-200;
+  @apply text-blue-600 hover:text-blue-800 transition-colors duration-200 cursor-pointer;
 }
 
 /* 标题样式 */
@@ -96,14 +113,37 @@ body {
   @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600;
 }
 
+/* 语言切换样式 */
+.language-switch {
+  @apply text-sm text-gray-500 cursor-pointer;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  /* 隐藏导出按钮容器 */
+  .pdf-export-btn-container {
+    display: none !important;
+  }
+
+  /* 简历容器样式 */
+  .resume-container {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    background: white;
+    overflow: visible;
+  }
+}
 
 /* 打印样式优化 */
 @media print {
   /* 全局样式 */
   * {
-    -webkit-print-color-adjust: exact !important;
-    color-adjust: exact !important;
-    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   /* 页面样式 */
@@ -114,107 +154,116 @@ body {
 
   /* 全局样式 */
   html, body {
-    background-color: white !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    height: auto !important;
-    overflow: visible !important;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    overflow: visible;
   }
 
   /* 简历容器样式 */
   .resume-container {
-    box-shadow: none !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    max-width: none !important;
-    width: 100% !important;
-    min-height: auto !important;
-    height: auto !important;
-    background: white !important;
-    overflow: visible !important;
+    box-shadow: none;
+    margin: 0;
+    border-radius: 0;
+    max-width: none;
+    width: 100%;
+    min-height: auto;
+    height: auto;
+    background: white;
+    overflow: visible;
   }
 
-  /* 隐藏导出按钮 */
-  .pdf-export-btn {
-    display: none !important;
+  .header-container {
+    justify-content: flex-end;
+  }
+
+  /* 隐藏导出按钮容器 */
+  .pdf-export-btn-container {
+    display: none;
+  }
+
+  /* 隐藏语言切换 */
+  .language-switch {
+    display: none;
   }
 
   /* 确保标题不会孤立在页面底部 */
   .section-title {
-    break-after: avoid !important;
-    break-inside: avoid !important;
+    break-after: avoid;
+    break-inside: avoid;
     orphans: 2;
     widows: 2;
   }
   
   /* 列表项样式 */
   li {
-    break-inside: avoid !important;
+    break-inside: avoid;
     orphans: 2;
     widows: 2;
   }
 
   /* 优化字体大小和行高 */
   .section-title {
-    font-size: 20px !important;
-    margin-bottom: 12px !important;
+    font-size: 20px;
+    margin-bottom: 12px;
   }
 
   /* 姓名样式 */
   h1 {
-    font-size: 48px !important;
-    margin-bottom: 8px !important;
+    font-size: 48px;
+    margin-bottom: 8px;
   }
 
   /* 三级标题样式 */
   h3 {
-    font-size: 18px !important;
+    font-size: 18px;
   }
 
   h4 {
-    font-size: 16px !important;
+    font-size: 16px;
   }
 
   /* 确保技能标签和状态标签正确显示 */
   .skill-tag,
   .status-tag {
-    background-color: #374151 !important;
-    color: white !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+    background-color: #374151;
+    color: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   /* 优化链接显示 */
   .resume-link {
-    color: #2563eb !important;
-    text-decoration: none !important;
+    color: #2563eb;
+    text-decoration: none;
   }
 
   /* 确保图标正确显示 */
   svg {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   /* 优化间距 */
   .px-8 {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   /* 上内边距 */
   .pt-10 {
-    padding-top: 2rem !important;
+    padding-top: 2rem;
   }
 
   /* 下内边距 */
   .pb-6 {
-    padding-bottom: 1.5rem !important;
+    padding-bottom: 1.5rem;
   }
 
   /* 下内边距 */
   .pb-10 {
-    padding-bottom: 2rem !important;
+    padding-bottom: 2rem;
   }
 }

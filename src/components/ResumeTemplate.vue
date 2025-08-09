@@ -1,8 +1,7 @@
 <template>
-  <div class="resume-container min-h-screen bg-white">
-    <!-- PDF导出按钮 - 仅在非打印模式下显示 -->
-    <div class="print:hidden fixed top-4 right-4 z-10 space-y-2">
-      <!-- 导出格式选择 -->
+  <div class="resume-container">
+    <!-- PDF导出按钮 -->
+    <div v-if="env === 'development'" class="pdf-export-btn-container">
       <div class="bg-white rounded-lg shadow-lg p-3 text-sm">
         <label class="block text-gray-700 mb-2">PDF格式:</label>
         <select v-model="pdfFormat" class="w-full p-1 border rounded text-sm">
@@ -28,13 +27,13 @@
     </div>
 
     <!-- 简历头部 -->
-    <div class="px-8 pt-10 pb-6">
+    <div class="resume-header">
       <!-- 语言切换和姓名行 -->
-      <div class="flex justify-between items-start mb-4">
-        <div class="text-sm text-gray-500">
-          <!-- <span class="text-green-600 cursor-pointer">中文</span>
+      <div class="header-container">
+        <div class="language-switch">
+          <span class="text-green-600 cursor-pointer">中文</span>
           <span class="mx-1">/</span>
-          <span class="cursor-pointer hover:text-gray-700">EN</span> -->
+          <span class="cursor-pointer hover:text-gray-700">EN</span>
         </div>
         <div class="text-right">
           <h1 class="text-5xl font-light text-gray-900 mb-3">{{ resumeData.personalInfo.name }}</h1>
@@ -72,7 +71,7 @@
       </div>
 
       <!-- 技能标签 -->
-      <div class="flex justify-end mb-8">
+      <div v-if="resumeData.skills.length > 0" class="flex justify-end mb-8">
         <div class="flex flex-wrap justify-end max-w-md">
           <span 
             v-for="skill in resumeData.skills" 
@@ -86,9 +85,9 @@
     </div>
 
     <!-- 主要内容区域 -->
-    <div class="px-8 pb-10 space-y-8">
+    <div class="main-content">
       <!-- 工作经历 -->
-      <section>
+      <section v-if="resumeData.experiences.length > 0">
         <h2 class="section-title">工作经历</h2>
         <div class="space-y-6">
           <div 
@@ -130,7 +129,7 @@
       </section>
 
       <!-- 个人项目 -->
-      <section>
+      <section v-if="resumeData.personalProjects.length > 0">
         <h2 class="section-title">个人项目</h2>
         <div class="space-y-6">
           <div 
@@ -138,7 +137,7 @@
             :key="index"
             class="experience-card"
           >
-            <h4 class="font-medium mb-3 text-gray-700 text-base">{{ project.name }}</h4>
+            <h4 class="resume-link font-medium mb-3 text-gray-700 text-base" @click="openProject(project)">{{ project.name }}</h4>
             <ul class="space-y-1 text-sm text-gray-700 mb-3">
               <li v-for="(description, idx) in project.descriptions" :key="idx" class="flex">
                 <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
@@ -146,7 +145,6 @@
               </li>
             </ul>
             
-            <!-- 项目技术标签 -->
             <div class="flex flex-wrap">
               <span 
                 v-for="tech in project.technologies" 
@@ -161,7 +159,7 @@
       </section>
 
       <!-- 教育经历 -->
-      <section>
+      <section v-if="resumeData.education.school">
         <h2 class="section-title">教育经历</h2>
         <div class="education-item">
           <div class="flex justify-between items-start">
@@ -175,7 +173,7 @@
       </section>
 
       <!-- 自我评价 -->
-      <section>
+      <section v-if="resumeData.selfEvaluation.length > 0">
         <h2 class="section-title">自我评价</h2>
         <ul class="space-y-1 text-sm text-gray-700">
           <li v-for="(evaluation, index) in resumeData.selfEvaluation" :key="index" class="flex">
@@ -186,7 +184,7 @@
       </section>
 
       <!-- 其他链接 -->
-      <section>
+      <section v-if="resumeData.links.length > 0">
         <h2 class="section-title">其他链接</h2>
         <ul class="space-y-2 text-sm">
           <li v-for="(link, index) in resumeData.links" :key="index" class="flex items-center">
@@ -202,6 +200,9 @@
 
 <script setup>
 import { ref } from 'vue'
+
+// 环境变量
+const env = import.meta.env.MODE
 
 // 导出状态
 const isExporting = ref(false)
@@ -226,6 +227,10 @@ const calculatePageHeight = () => {
   const marginSpace = 25
   const totalHeight = Math.max(contentHeight, finalHeight) + marginSpace
   return `${totalHeight / 96}in`
+}
+
+const openProject = (project) => {
+  window.open(project.url, '_blank')
 }
 
 // PDF导出功能
@@ -443,6 +448,7 @@ const resumeData = ref({
   personalProjects: [
     {
       name: '国际化自动提取 & 智能翻译工具',
+      url: 'https://github.com/au-to/i18n-extractor',
       descriptions: [
         '通过遍历和解析 Vue 文件，自动提取中文文本并生成语义化的键名',
         '对提取到的中文文本进行国际化翻译，自动化国际化翻译的过程',
@@ -452,6 +458,7 @@ const resumeData = ref({
     },
     {
       name: '支持服务端渲染的现代化个人网站',
+      url: 'https://github.com/au-to/personal-website',
       descriptions: [
         '使用 Next.js 构建的现代化个人网站，支持炫酷的动画效果、响应式设计和博客系统',
         '封装多个自定义动画组件，支持淡入、缩放、弹跳、跟随、视差滚动等炫酷的动画效果',
