@@ -24,18 +24,37 @@ body {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
+/* 简历头部样式 */
 .resume-header {
   @apply px-8 pt-10 pb-6;
 }
 
+/* 简历头部容器样式 */
 .header-container {
   @apply flex justify-between items-start mb-4;
 }
 
+/* PDF导出按钮容器样式 */
 .pdf-export-btn-container {
   @apply fixed top-4 right-4 z-10 space-y-2;
 }
 
+/* PDF导出按钮项样式 */
+.pdf-export-btn-item {
+  @apply bg-white rounded-lg shadow-lg p-3 text-sm;
+}
+
+/* PDF导出按钮项标签样式 */
+.pdf-export-btn-item-label {
+  @apply block text-gray-700 mb-2;
+}
+
+/* PDF导出按钮项选择框样式 */
+.pdf-export-btn-item-select {
+  @apply w-full p-1 border rounded text-sm;
+}
+
+/* 主内容容器样式 */
 .main-content {
   @apply px-8 pb-10 space-y-8;
 }

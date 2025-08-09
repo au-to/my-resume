@@ -2,9 +2,9 @@
   <div class="resume-container">
     <!-- PDF导出按钮 -->
     <div v-if="env === 'development'" class="pdf-export-btn-container">
-      <div class="bg-white rounded-lg shadow-lg p-3 text-sm">
-        <label class="block text-gray-700 mb-2">PDF格式:</label>
-        <select v-model="pdfFormat" class="w-full p-1 border rounded text-sm">
+      <div class="pdf-export-btn-item">
+        <label class="pdf-export-btn-item-label">PDF格式:</label>
+        <select v-model="pdfFormat" class="pdf-export-btn-item-select">
           <option value="single-page">不分页</option>
           <option value="paged">分页</option>
         </select>
@@ -494,7 +494,3 @@ const resumeData = ref({
   ]
 })
 </script>
-
-<style scoped>
-/* 组件特定样式可以在这里添加 */
-</style>
