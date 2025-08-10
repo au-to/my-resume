@@ -224,11 +224,12 @@ const calculatePageHeight = () => {
   container.style.transform = originalTransform
   const finalHeight = container.scrollHeight // 保险起见再取一次
 
-  const marginSpace = 25
+  const marginSpace = 0
   const totalHeight = Math.max(contentHeight, finalHeight) + marginSpace
   return `${totalHeight / 96}in`
 }
 
+// 打开个人项目
 const openProject = (project) => {
   window.open(project.url, '_blank')
 }
