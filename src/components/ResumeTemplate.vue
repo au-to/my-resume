@@ -338,7 +338,7 @@ const exportPDF = async () => {
 // 简历数据
 const resumeData = ref({
   personalInfo: {
-    name: '赵虎彪',
+    name: `${env === 'development' ? '赵虎彪' : 'Ryan'}`,
     status: '求职中',
     location: '北京',
     job: '前端/后端/全栈开发',
