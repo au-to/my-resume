@@ -159,6 +159,15 @@ body {
   .skill-tag {
     margin-bottom: 0.5rem;
   }
+
+  .resume-header {
+    padding-bottom: 0;
+  }
+
+  .main-content {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 
 /* 打印样式优化 */

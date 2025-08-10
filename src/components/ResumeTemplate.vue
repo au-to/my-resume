@@ -36,7 +36,7 @@
           <span class="cursor-pointer hover:text-gray-700">EN</span>
         </div>
         <div class="text-right">
-          <h1 class="text-5xl font-light text-gray-900 mb-3">{{ resumeData.personalInfo.name }}</h1>
+          <h1 class="text-4xl font-light text-gray-900 mb-3">{{ resumeData.personalInfo.name }}</h1>
           <div class="flex justify-end">
             <span class="status-tag">{{ resumeData.personalInfo.status }}</span>
           </div>
@@ -337,12 +337,12 @@ const exportPDF = async () => {
 // 简历数据
 const resumeData = ref({
   personalInfo: {
-    name: 'Ryan',
+    name: '赵虎彪',
     status: '求职中',
     location: '北京',
     job: '前端/后端/全栈开发',
-    phone: '18712764947',
-    email: 'zhaohubiao553@gmail.com'
+    phone: '15701533179',
+    email: '15701533179@163.com'
   },
   skills: ['TypeScript', 'Vue', 'React', 'Node.js', 'Python'],
   experiences: [
@@ -350,21 +350,21 @@ const resumeData = ref({
       company: '北京水木分子生物科技有限公司',
       position: 'AI 应用开发工程师',
       dateRange: '2025-06 ~ 至今',
-      technologies: ['React', 'TypeScript', 'Python', 'Docker', 'Linux', 'Tornado', 'FastAPI'],
+      technologies: ['React', 'TypeScript', 'Python', 'Docker', 'Linux', 'Tornado'],
       projects: [
         {
-          name: '生物医药大模型基础工程',
+          name: '大模型基础工程',
           descriptions: [
-            '参与新一代对话式生物医药研发助手 chatDD 的前后端开发',
-            '参与生物医药大模型基础工程开发，持续优化工程架构',
-            '数据库分库分表，查询性能优化'
+            '参与新一代对话式生物医药研发助手 chatDD 的前端开发',
+            '对现存不合理的数据库重新进行分库分表，优化查询性能',
+            '作为技术 owner，在 chatDD 中接入钉钉登录，并从0到1开发了钉钉内嵌版 h5 微应用'
           ]
         },
         {
           name: '客户中后台建设',
           descriptions: [
             '负责用户管理后台的前端工程架构，带领一名后端从零到一搭建用户管理后台',
-            '主导工程化建设，制定代码规范，统一 UI 风格，封装10+个基础组件',
+            '主导前端工程化建设：搭建 CI/CD 流水线，制定代码规范，推动 UI 风格统一，封装10+个基础组件',
             '开发了可视化的数据分析面板，支持实时查看账号活跃度、反馈率等指标'
           ]
         }
@@ -403,13 +403,13 @@ const resumeData = ref({
             '采用托管式数据模型设计，简化了组件层级结构，提高了代码可维护性和扩展性'
           ]
         },
-        {
-          name: '寻源采购',
-          descriptions: [
-            '包括信息征询、询价、招标、竞价等子模块，帮助企业实现寻源流程的在线化管理',
-            '参与开发多标段、智能授标、比价等功能，通过数据切片和缓存解决智能授标中的大容量问题'
-          ]
-        },
+        // {
+        //   name: '寻源采购',
+        //   descriptions: [
+        //     '包括信息征询、询价、招标、竞价等子模块，帮助企业实现寻源流程的在线化管理',
+        //     '参与开发多标段、智能授标、比价等功能，通过数据切片和缓存解决智能授标中的大容量问题'
+        //   ]
+        // },
         {
           name: '团队基础设施建设',
           descriptions: [
@@ -477,7 +477,7 @@ const resumeData = ref({
     'AI 工具深度用户，持续探索 AI 辅助的开发模式',
     '目前会用的前端框架：Vue、React',
     '目前会用的后端：Node.js、Python',
-    '目前会用的数据库：MySQL、MongoDB',
+    '目前会用的数据库：MySQL、MongoDB、PostgreSQL',
     '更求是做个靠谱的 Programmer，梦想是成为一名优秀的全栈'
   ],
   links: [
