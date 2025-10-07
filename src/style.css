@@ -31,7 +31,7 @@ body {
 
 /* 简历头部容器样式 */
 .header-container {
-  @apply flex justify-between items-start mb-3;
+  @apply flex justify-end items-start mb-3;
 }
 
 /* PDF导出按钮容器样式 */
@@ -133,9 +133,9 @@ body {
 }
 
 /* 语言切换样式 */
-.language-switch {
+/* .language-switch {
   @apply text-sm text-gray-500 cursor-pointer;
-}
+} */
 
 /* 头像容器样式 */
 .avatar-container {
@@ -228,9 +228,9 @@ body {
   }
 
   /* 隐藏语言切换 */
-  .language-switch {
+  /* .language-switch {
     display: none;
-  }
+  } */
 
   /* 确保标题不会孤立在页面底部 */
   .section-title {

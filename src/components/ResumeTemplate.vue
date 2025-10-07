@@ -30,11 +30,11 @@
     <div class="resume-header">
       <!-- 语言切换和姓名行 -->
       <div class="header-container">
-        <div class="language-switch">
+        <!-- <div class="language-switch">
           <span class="text-green-600 cursor-pointer">中文</span>
           <span class="mx-1">/</span>
           <span class="cursor-pointer hover:text-gray-700">EN</span>
-        </div>
+        </div> -->
         <div class="flex justify-end items-center">
           <h1 class="text-4xl font-light text-gray-900 leading-none text-right">{{ resumeData.personalInfo.name }}</h1>
           <div class="avatar-container" v-if="resumeData.personalInfo.avatar">
@@ -456,26 +456,26 @@ const resumeData = ref({
     }
   ],
   personalProjects: [
-    {
-      name: '国际化自动提取 & 智能翻译工具',
-      url: 'https://github.com/au-to/i18n-extractor',
-      descriptions: [
-        '通过遍历和解析 Vue 文件，自动提取中文文本并生成语义化的键名',
-        '对提取到的中文文本进行国际化翻译，自动化国际化翻译的过程',
-        '键名生成和国际化翻译通过 AI 完成，支持自定义配置模型的 API Key'
-      ],
-      technologies: ['JavaScript', 'Node.js', '@vue/compiler-sfc', 'OpenAPI']
-    },
-    {
-      name: '支持服务端渲染的现代化个人网站',
-      url: 'https://github.com/au-to/personal-website',
-      descriptions: [
-        '使用 Next.js 构建的现代化个人网站，支持炫酷的动画效果、响应式设计和博客系统',
-        '封装多个自定义动画组件，支持淡入、缩放、弹跳、跟随、视差滚动等炫酷的动画效果',
-        '基于 GitHub Actions 构建 CI/CD 流水线，实现自动化的持续集成与部署'
-      ],
-      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'MongoDB']
-    }
+    // {
+    //   name: '国际化自动提取 & 智能翻译工具',
+    //   url: 'https://github.com/au-to/i18n-extractor',
+    //   descriptions: [
+    //     '通过遍历和解析 Vue 文件，自动提取中文文本并生成语义化的键名',
+    //     '对提取到的中文文本进行国际化翻译，自动化国际化翻译的过程',
+    //     '键名生成和国际化翻译通过 AI 完成，支持自定义配置模型的 API Key'
+    //   ],
+    //   technologies: ['JavaScript', 'Node.js', '@vue/compiler-sfc', 'OpenAPI']
+    // },
+    // {
+    //   name: '支持服务端渲染的现代化个人网站',
+    //   url: 'https://github.com/au-to/personal-website',
+    //   descriptions: [
+    //     '使用 Next.js 构建的现代化个人网站，支持炫酷的动画效果、响应式设计和博客系统',
+    //     '封装多个自定义动画组件，支持淡入、缩放、弹跳、跟随、视差滚动等炫酷的动画效果',
+    //     '基于 GitHub Actions 构建 CI/CD 流水线，实现自动化的持续集成与部署'
+    //   ],
+    //   technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'MongoDB']
+    // }
   ],
   education: {
     school: '燕山大学（国家重点）',
