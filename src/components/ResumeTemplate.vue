@@ -352,7 +352,7 @@ const resumeData = ref({
     job: '前端/后端/全栈开发',
     phone: '15701533179',
     email: '15701533179@163.com',
-    avatar: '/avator.png'
+    avatar: `${import.meta.env.BASE_URL}avator.png`
   },
   skills: ['TypeScript', 'Vue', 'React', 'Node.js', 'Python'],
   experiences: [
