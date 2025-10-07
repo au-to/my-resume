@@ -35,12 +35,20 @@
           <span class="mx-1">/</span>
           <span class="cursor-pointer hover:text-gray-700">EN</span>
         </div>
-        <div class="text-right">
-          <h1 class="text-4xl font-light text-gray-900 mb-3">{{ resumeData.personalInfo.name }}</h1>
-          <div class="flex justify-end">
-            <span class="status-tag">{{ resumeData.personalInfo.status }}</span>
+        <div class="flex justify-end items-center">
+          <h1 class="text-4xl font-light text-gray-900 leading-none text-right">{{ resumeData.personalInfo.name }}</h1>
+          <div class="avatar-container" v-if="resumeData.personalInfo.avatar">
+            <img
+              :src="resumeData.personalInfo.avatar" 
+              class="avatar-image"
+            />
           </div>
         </div>
+      </div>
+
+      <!-- 状态 -->
+      <div class="flex justify-end mb-4">
+        <span class="status-tag">{{ resumeData.personalInfo.status }}</span>
       </div>
 
       <!-- 联系信息 -->
@@ -339,11 +347,12 @@ const exportPDF = async () => {
 const resumeData = ref({
   personalInfo: {
     name: `${env === 'development' ? '赵虎彪' : 'Ryan'}`,
-    status: '求职中',
+    status: '求职中/目前在职',
     location: '北京',
     job: '前端/后端/全栈开发',
     phone: '15701533179',
-    email: '15701533179@163.com'
+    email: '15701533179@163.com',
+    avatar: '/avator.png'
   },
   skills: ['TypeScript', 'Vue', 'React', 'Node.js', 'Python'],
   experiences: [

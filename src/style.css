@@ -31,7 +31,7 @@ body {
 
 /* 简历头部容器样式 */
 .header-container {
-  @apply flex justify-between items-start mb-4;
+  @apply flex justify-between items-start mb-3;
 }
 
 /* PDF导出按钮容器样式 */
@@ -135,6 +135,16 @@ body {
 /* 语言切换样式 */
 .language-switch {
   @apply text-sm text-gray-500 cursor-pointer;
+}
+
+/* 头像容器样式 */
+.avatar-container {
+  @apply flex-shrink-0 flex flex-col items-center justify-start ml-2;
+}
+
+/* 头像图片样式 */
+.avatar-image {
+  @apply w-16 h-16 rounded-full object-cover border border-gray-300 shadow-md;
 }
 
 /* 移动端适配 */
@@ -277,6 +287,13 @@ body {
   svg {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+  }
+
+  /* 头像打印样式 */
+  .avatar-image {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    border-color: #e5e7eb;
   }
 
   /* 优化间距 */
