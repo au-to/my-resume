@@ -358,7 +358,7 @@ const resumeData = ref({
   experiences: [
     {
       company: '北京水木分子生物科技有限公司',
-      position: 'AI 应用开发工程师',
+      position: 'AI 前端工程师',
       dateRange: '2025-06 ~ 至今',
       technologies: ['React', 'TypeScript', 'Python', 'Docker', 'Linux', 'Tornado'],
       projects: [

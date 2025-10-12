@@ -144,7 +144,7 @@ body {
 
 /* 头像图片样式 */
 .avatar-image {
-  @apply w-16 h-16 rounded-full object-cover border border-gray-300 shadow-md;
+  @apply w-12 h-12 rounded-full object-cover border border-gray-300 shadow-md;
 }
 
 /* 移动端适配 */
