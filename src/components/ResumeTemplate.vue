@@ -360,7 +360,7 @@ const resumeData = ref({
       company: '北京水木分子生物科技有限公司',
       position: 'AI 前端工程师',
       dateRange: '2025-06 ~ 至今',
-      technologies: ['React', 'TypeScript', 'Python', 'Docker', 'Linux', 'Tornado'],
+      technologies: ['React', 'TypeScript', 'Python', 'Docker', 'K8s', 'FastApi'],
       projects: [
         {
           name: '大模型基础工程',
@@ -423,7 +423,7 @@ const resumeData = ref({
         {
           name: '团队基础设施建设',
           descriptions: [
-            '参与前端团队的基础设施建设，技术分享，内部组件库维护，并落地 3 + 技术方案',
+            '参与前端团队(30人)的基础设施建设，技术分享，内部组件库维护，并落地 3 + 技术方案',
             '担任实习生师兄，沉淀新人文档，带教 1 名实习生通过转正考核；首年获评 10 大新人，次年绩效前 10%',
             '在前端团队推广了 Cursor、Trae 等 AI 工具，在国际化、代码重构等场景至少提升了 30% 的开发效率'  
           ]
