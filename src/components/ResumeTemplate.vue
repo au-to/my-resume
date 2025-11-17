@@ -488,7 +488,7 @@ const resumeData = ref({
     '目前会用的前端框架：Vue、React',
     '目前会用的后端：Node.js、Python',
     '目前会用的数据库：MySQL、MongoDB、PostgreSQL',
-    '更求是做个靠谱的 Programmer，梦想是成为一名优秀的全栈'
+    '永不设限：UI/UX、PM、前端、后端，你感兴趣的，欢迎一起聊聊'
   ],
   links: [
     {
