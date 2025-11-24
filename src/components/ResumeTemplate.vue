@@ -383,7 +383,7 @@ const resumeData = ref({
     {
       company: '北京商越网络科技有限公司',
       position: '前端开发工程师',
-      dateRange: '2023-06 ~ 2025-04',
+      dateRange: '2023-06 ~ 2025-05',
       technologies: ['Vue', 'JavaScript', 'TypeScript', 'Vite', 'Webpack', 'Node.js'],
       projects: [
         {
