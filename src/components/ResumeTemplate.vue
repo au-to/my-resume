@@ -360,14 +360,16 @@ const resumeData = ref({
       company: '北京水木分子生物科技有限公司',
       position: 'AI 前端工程师',
       dateRange: '2025-06 ~ 至今',
-      technologies: ['React', 'TypeScript', 'Python', 'Docker', 'K8s', 'FastApi'],
+      technologies: ['React', 'TypeScript', 'UmiJS', 'NextJS', 'Docker', 'K8s'],
       projects: [
         {
-          name: '大模型基础工程',
+          name: 'AI 智能对话平台-ChatDD',
           descriptions: [
-            '负责新一代对话式生物医药研发助手 chatDD 的前端开发',
-            '对现存不合理的数据库重新进行分库分表，优化查询性能',
-            '作为技术 owner，在 chatDD 中接入钉钉登录，并从0到1开发了钉钉内嵌版 h5 微应用'
+            '主导数据洞察模块的架构设计和开发，实现流式数据加载、轮次管理、状态同步等核心功能',
+            '设计并实现 SSE 消息处理系统，支持 11 种消息类型和 7 种事件类型,实现思考过程可视化、步骤展示等高级功能',
+            '构建精细化的状态管理架构，设计 24 个独立状态模块，实现复杂的消息显示逻辑和乐观更新',
+            '实现了高性能的流式数据加载架构，支持大数据量的增量追加，优化了 30% 的渲染性能',
+            '设计了事件驱动的 UI 控制系统，使用策略模式处理不同类型的消息，代码可维护性提升 40%'
           ]
         },
         {
@@ -375,7 +377,7 @@ const resumeData = ref({
           descriptions: [
             '负责用户管理后台的前端工程架构，从零到一搭建用户管理后台',
             '主导前端工程化建设：搭建 CI/CD 流水线，制定代码规范，推动 UI 风格统一，封装10+个基础组件',
-            '开发了可视化的数据分析面板，支持实时查看账号活跃度、反馈率等指标'
+            '建立了完善的代码质量保障体系，集成了 TypeScript、ESLint、Prettier、StyleLint、Git Hooks等工程化解决方案'
           ]
         }
       ]
