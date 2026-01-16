@@ -359,7 +359,7 @@ const resumeData = ref({
     {
       company: '北京水木分子生物科技有限公司',
       position: 'AI 前端工程师',
-      dateRange: '2025-06 ~ 至今',
+      dateRange: '2025-06 ~ 2026-01',
       technologies: ['React', 'TypeScript', 'UmiJS', 'NextJS', 'Docker', 'K8s'],
       projects: [
         {
