@@ -356,6 +356,20 @@ const resumeData = ref({
   },
   skills: ['TypeScript', 'Vue', 'React', 'Node.js', 'Python'],
   experiences: [
+  {
+      company: '京东科技',
+      position: '软件开发工程师',
+      dateRange: '2026-01 ~ 至今',
+      technologies: ['Vue', 'React', 'TypeScript', 'Node.js', 'Python'],
+      projects: [
+        {
+          name: 'JoyAgent智能体平台',
+          descriptions: [
+            '负责JoyAgent核心功能的开发，对内赋能业务团队，对外输出标准化能力',
+          ]
+        }
+      ]
+    },
     {
       company: '北京水木分子生物科技有限公司',
       position: 'AI 前端工程师',
