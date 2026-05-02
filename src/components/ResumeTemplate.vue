@@ -124,7 +124,7 @@
 
             <!-- 工作内容 -->
             <div class="experience-content mt-4" v-for="(project, index) in experience.projects" :key="index">
-              <h4 class="font-medium mb-3 text-gray-700 text-base">{{ project.name }}</h4>
+              <h4 class="font-medium mb-3 text-gray-700 text-base" :class="{ 'resume-link': project.url }" @click="openProject(project)">{{ project.name }}</h4>
               <ul class="space-y-1 text-sm text-gray-700">
                 <li v-for="(achievement, idx) in project.descriptions" :key="idx" class="flex">
                   <span class="text-gray-500 mr-2 flex-shrink-0 w-3 h-6 flex items-center justify-center">•</span>
@@ -239,7 +239,9 @@ const calculatePageHeight = () => {
 
 // 打开个人项目
 const openProject = (project) => {
-  window.open(project.url, '_blank')
+  if (project.url) {
+    window.open(project.url, '_blank')
+  }
 }
 
 // PDF导出功能
@@ -357,13 +359,14 @@ const resumeData = ref({
   skills: ['TypeScript', 'Vue', 'React', 'Node.js', 'Python'],
   experiences: [
   {
-      company: '京东科技',
+      company: '京东',
       position: '软件开发工程师',
       dateRange: '2026-01 ~ 至今',
       technologies: ['Vue', 'React', 'TypeScript', 'Node.js', 'Python'],
       projects: [
         {
           name: 'JoyAgent智能体平台',
+          url: 'https://joyagent.jd.com',
           descriptions: [
             '负责JoyAgent核心功能的开发，对内赋能业务团队，对外输出标准化能力',
           ]
