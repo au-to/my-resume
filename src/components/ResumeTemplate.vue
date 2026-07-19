@@ -366,7 +366,7 @@ const resumeData = ref({
       projects: [
         {
           name: 'JoyAgent智能体平台',
-          url: 'https://joyagent.jd.com',
+          // url: 'https://joyagent.jd.com',
           descriptions: [
             '负责JoyAgent核心功能的开发，对内赋能业务团队，对外输出标准化能力',
           ]
