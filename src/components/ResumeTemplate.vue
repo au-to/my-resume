@@ -362,13 +362,23 @@ const resumeData = ref({
       company: '京东',
       position: '软件开发工程师',
       dateRange: '2026-01 ~ 至今',
-      technologies: ['Vue', 'React', 'TypeScript', 'Node.js', 'Python'],
+      technologies: ['Vue', 'TypeScript', 'Node.js', 'Java', 'Spring Boot', 'Redis'],
       projects: [
         {
           name: 'JoyAgent智能体平台',
           // url: 'https://joyagent.jd.com',
           descriptions: [
-            '负责JoyAgent核心功能的开发，对内赋能业务团队，对外输出标准化能力',
+            '负责智能体平台核心模块建设，覆盖 Skill / Expert Hub、AI 云盘、知识库与多模态工作流，在多应用 Monorepo 中推进 PC、移动端及共享组件协同演进',
+            '从 0 到 1 搭建移动端知识库应用，设计 WebView / iframe 多宿主适配与免登认证方案，打通文件上传、引用及多格式预览链路',
+            '负责 AI 专家系统前后端建设，使用 Vue 与 Spring Boot 打通专家创建、AI 生成、版本快照、发布审批、上架及跨团队空间复制闭环，完善权限隔离与状态一致性'
+          ]
+        },
+        {
+          name: '知识库解析与知识图谱服务',
+          descriptions: [
+            '独立设计并实现基于 Node.js、Fastify、BullMQ、Redis 和 OSS 的知识库解析服务，通过 AST 解析 Markdown 文档、双向链接与标签，生成文件树、知识图谱及反向链接数据',
+            '设计异步任务队列、Worker Threads 并行解析、流式 ZIP 解压、Webhook 重试及 Prometheus 可观测链路，支持服务与 Worker 独立部署和水平扩容',
+            '基于阶梯压测优化任务与解析线程并发策略，在 500KB / 200 文档样本下将高并发解析 P90 从约 20 秒降低至 7–8 秒，并发 10 场景成功率从 95% 提升至 100%'
           ]
         }
       ]
