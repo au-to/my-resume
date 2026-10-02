@@ -362,23 +362,31 @@ const resumeData = ref({
       company: '京东',
       position: '软件开发工程师',
       dateRange: '2026-01 ~ 至今',
-      technologies: ['Vue', 'TypeScript', 'Node.js', 'Java', 'Spring Boot', 'Redis'],
+      technologies: ['Java', 'Spring Boot', 'Node.js', 'TypeScript', 'Vue', 'Redis', 'BullMQ', 'OSS'],
       projects: [
         {
-          name: 'JoyAgent智能体平台',
+          name: 'JoyAgent 智能体平台 · 专家与工具生态',
           // url: 'https://joyagent.jd.com',
           descriptions: [
-            '负责智能体平台核心模块建设，覆盖 Skill / Expert Hub、AI 云盘、知识库与多模态工作流，在多应用 Monorepo 中推进 PC、移动端及共享组件协同演进',
-            '从 0 到 1 搭建移动端知识库应用，设计 WebView / iframe 多宿主适配与免登认证方案，打通文件上传、引用及多格式预览链路',
-            '负责 AI 专家系统前后端建设，使用 Vue 与 Spring Boot 打通专家创建、AI 生成、版本快照、发布审批、上架及跨团队空间复制闭环，完善权限隔离与状态一致性'
+            '负责企业级 AI 专家平台核心模块的全栈研发，打通自然语言生成、配置编辑、调试验证、审批发布与应用分发链路，支持专家及专家团在多个业务入口复用',
+            '设计并完善专家资产生命周期模型，分离草稿、发布快照与上架状态，冻结配置及文件版本，处理跨空间复制、权限校验与运行态同步，避免草稿变更影响已发布资产',
+            '参与 Agent 工具生态集成，将 Plugin、MCP、工作流及知识检索能力适配为统一 Skill 描述与执行入口，衔接工具配置、能力分发和运行时调用，复用平台既有工具体系'
           ]
         },
         {
-          name: '知识库解析与知识图谱服务',
+          name: '多模型协议适配与 Agent 流式执行',
           descriptions: [
-            '独立设计并实现基于 Node.js、Fastify、BullMQ、Redis 和 OSS 的知识库解析服务，通过 AST 解析 Markdown 文档、双向链接与标签，生成文件树、知识图谱及反向链接数据',
-            '设计异步任务队列、Worker Threads 并行解析、流式 ZIP 解压、Webhook 重试及 Prometheus 可观测链路，支持服务与 Worker 独立部署和水平扩容',
-            '基于阶梯压测优化任务与解析线程并发策略，在 500KB / 200 文档样本下将高并发解析 P90 从约 20 秒降低至 7–8 秒，并发 10 场景成功率从 95% 提升至 100%'
+            '参与多模型协议网关建设，基于统一中间模型与分层转换器适配 Chat Completions、Responses 和 Anthropic Messages，处理工具调用、推理内容、结束状态及用量统计的协议差异',
+            '完善 Agent 流式事件处理链路，统一文本、工具调用、子任务及终态事件，结合事件偏移量、请求归属校验与运行状态判定，处理断线续接、会话切换和等待用户输入等复杂场景',
+            '优化高频文本增量的缓存写入策略，采用首包直出、后续批量合并及关键事件前刷新机制，在控制首字延迟的同时减少 Redis 写入，并保持文本与工具事件的先后顺序'
+          ]
+        },
+        {
+          name: '异步知识解析与结构化数据服务',
+          descriptions: [
+            '从 0 到 1 独立建设 Node.js / Fastify 知识解析服务，基于 AST 处理 Markdown 扩展语法与双向引用，生成文档索引、文件树和关联图谱，以 OSS 压缩快照与缓存支撑知识浏览及关联查询',
+            '设计 BullMQ 任务队列与 Worker Threads 两层并发机制，分离请求接入和计算任务；通过流式解压、资源限制、回调重试及 Prometheus 分阶段监控，完善异常处理与容量观测，支持 Worker 独立扩展',
+            '通过阶梯压测定位 CPU 竞争，调整任务并发与线程池配置；在 200 文档、并发 10 的测试场景下，将单任务解析 P90 从 20.7 秒降至 7.4 秒，通过受控排队稳定解析长尾并明确单实例容量边界'
           ]
         }
       ]
