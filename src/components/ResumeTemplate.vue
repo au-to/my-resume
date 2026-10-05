@@ -351,7 +351,7 @@ const resumeData = ref({
     name: `${env === 'development' ? '赵虎彪' : 'Ryan'}`,
     status: '求职中/目前在职',
     location: '北京',
-    job: '前端/后端/全栈开发',
+    job: 'AI应用/Agent开发/全栈开发',
     phone: '15701533179',
     email: '15701533179@163.com',
     avatar: `${import.meta.env.BASE_URL}avator.png`
